@@ -1,0 +1,19 @@
+{
+  "name": "kikai",
+  "version": "0.0.1",
+  "description": "API docs",
+  "author": "David Dollar",
+  "dependencies": {
+    "yaml": "0.2.2",
+    "express": "2.4.3",
+    "jade": "0.13",
+    "nodemon": "latest",
+    "sass": "latest",
+    "yamlparser": "latest",
+    "restler": "latest",
+    "connect-form": "latest"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  }
+}

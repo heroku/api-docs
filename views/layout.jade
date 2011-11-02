@@ -1,0 +1,25 @@
+!!! 5
+html(lang="en")
+  head
+    title Heroku API
+    script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js")
+    script(src="/kikai.js")
+    link(rel="stylesheet", href="/kikai.css")
+  body
+    #container
+
+      #header
+        h1 Heroku API
+        #api_key
+          span API Key
+          input(type="text")
+          
+      ul.sidebar
+        li.active
+          a(href="/apps") Apps
+        li
+          a(href="/config") Config
+        li
+          a(href="/domains") Domains
+
+      #content!= body

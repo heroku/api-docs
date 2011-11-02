@@ -1,0 +1,60 @@
+---
+title: "Apps"
+endpoints:
+  - endpoint:
+      action: GET /apps
+      text: List apps
+      response:
+        xml: |
+          <?xml version="1.0" encoding="UTF-8"?>
+          <apps type="array">
+          \t<app>
+          \t\t<created-at type="datetime">2011-01-01T00:00:00-07:00</created-at>
+          \t\t<dynos type="integer">1</dynos>
+          \t\t<name>example</name>
+          \t\t<repo-size type="integer">1000000</repo-size>
+          \t\t<requested-stack nil="true"></requested-stack>
+          \t\t<slug-size type="integer">1000000</slug-size>
+          \t\t<stack>cedar</stack>
+          \t\t<workers type="integer">0</workers>
+          \t\t<create-status type="symbol">complete</create-status>
+          \t\t<repo-migrate-status type="symbol">complete</repo-migrate-status>
+          \t\t<id>app000000@heroku.com</id>
+          \t\t<domain_name></domain_name>
+          \t\t<owner>owner@example.org</owner>
+          \t\t<web_url>http://example.herokuapp.com/</web_url>
+          \t\t<git_url>git@heroku.com:example.git</git_url>
+          \t\t<database_size>0</database_size>
+          \t</app>
+          </apps>
+  - endpoint:
+      action: POST /apps
+      text: Create an app
+      params:
+        - name: 'app[name]'
+          text: the app name
+          required: false
+        - name: 'app[stack]'
+          text: the stack
+          required: false
+      response:
+        xml: |
+          <?xml version="1.0">
+          <app>
+          \t<created-at type="datetime">2011-01-01T00:00:00-07:00</created-at>
+          \t<dynos type="integer">1</dynos>
+          \t<name>example</name>
+          \t<repo-size type="integer">1000000</repo-size>
+          \t<requested-stack nil="true"></requested-stack>
+          \t<slug-size type="integer">1000000</slug-size>
+          \t<stack>cedar</stack>
+          \t<workers type="integer">0</workers>
+          \t<create-status type="symbol">complete</create-status>
+          \t<repo-migrate-status type="symbol">complete</repo-migrate-status>
+          \t<id>app000000@heroku.com</id>
+          \t<domain_name></domain_name>
+          \t<owner>owner@example.org</owner>
+          \t<web_url>http://example.herokuapp.com/</web_url>
+          \t<git_url>git@heroku.com:example.git</git_url>
+          \t<database_size>0</database_size>
+          </app>

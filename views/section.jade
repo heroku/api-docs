@@ -1,0 +1,27 @@
+- api.endpoints.forEach(function(endpoint) {
+  - endpoint = endpoint.endpoint
+
+  div.endpoint
+    h4
+      input.execute(type="button", value="Execute")
+      span.action= endpoint.action
+    div.text= endpoint.text
+    - if (endpoint.params)
+      div.params
+        - endpoint.params.forEach(function(param) {
+          - required_class = (param.required) ? 'required' : 'optional';
+            div.param(class=required_class)
+              div.name= param.name
+              div.input
+                input.param(name=param.name, type="text", size="10")
+              div.text= param.text
+        - })
+    input.sample.xml(type="hidden", value=endpoint.response.xml)
+    div.web.request
+      h4 Request
+      textarea(readonly)
+    div.web.response
+      h4 Response
+      textarea= endpoint.response.xml
+
+- })

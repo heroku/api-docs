@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#node_modules/.bin/coffee -c web.coffee
+
+echo "ENV:$NODE_ENV"
+
+if [ "${NODE_ENV}" == "production" ]; then
+  node web.js
+else
+  node_modules/.bin/nodemon --debug web.js
+fi

@@ -1,0 +1,127 @@
+body
+  :background #fff
+  :font-family Helvetica, Arial, sans-serif
+
+#container
+  :width 1000px
+  :margin auto
+
+#header
+  :background #333
+  :color #fff
+  :padding 8px 12px
+  h1
+    :font-size 36px
+    :margin 0
+    :display inline-block
+  #api_key
+    :display inline-block
+    :margin-left 200px
+    span
+      :font-size 16px
+      :margin-right 8px
+    input
+      :width 200px
+
+ul.sidebar
+  :width 200px
+  :background #ccc
+  :margin 0
+  :float left
+  :display inline-block
+  :list-style-type none
+  :padding 0
+  :border 1px #999 solid
+  :border-bottom 0
+  :margin-top 12px
+  li
+    :border-bottom 1px #999 solid
+    &.active
+      :background-color #ddd
+    &:hover
+      :background-color #ddd
+    a
+      :color #333
+      :padding 8px 12px
+      :font-weight bold
+      :text-decoration none
+      :display inline-block
+      :width 168px
+      &:hover
+        :color #000
+
+#content
+  :float right
+  :width 786px
+  :padding 12px
+  :padding-right 0px
+  h3
+    :margin 4px
+    :background #666
+    :color #fff
+    :border 1px #333 solid
+    :padding 8px 12px
+  .endpoint
+    :margin-right 0
+    :margin-bottom 10px
+    :padding 8px 12px
+    :background #ddd
+    :border 1px #999 solid
+    :padding-bottom 0
+    h4
+      :margin -12px
+      :margin-bottom 8px
+      :margin-top -8px
+      :background #aaa
+      :padding 8px 12px
+      :padding-bottom 5px
+      :border-bottom 1px #999 solid
+      .execute
+        :float right
+        :margin-top -2px
+        :margin-right -4px
+    .text
+      :padding 16px
+      :padding-left 12px
+      :padding-bottom 10px
+      :border-bottom 1px #999 solid
+      :margin -12px
+    .params
+      :margin -12px
+      :margin-top 12px
+      :margin-bottom 0
+      :background #ccc
+      .param
+        :border-bottom 1px #aaa solid
+        .name
+          :display inline-block
+          :width 80px
+          :padding 8px 12px
+          :font-size 0.9em
+        .input
+          :display inline-block
+          :padding 8px 12px
+          input
+            :width 150px
+        .text
+          :display inline-block
+          :padding 8px 12px
+          :font-size 0.85em
+          :border-bottom 0
+    .web
+      :margin-top 8px
+      h4
+        :font-size 0.8em
+        :padding-top 4px
+        :padding-bottom 4px
+        :padding-left 8px
+      textarea
+        :margin-left -3px
+        :margin-bottom 4px
+        :width 760px
+        :font-family Courier, Courier New, monospace
+    .response
+      textarea
+        :height 150px
+
+
