@@ -24,6 +24,7 @@ app.get('/kikai.js', function(req, res) {
 });
 
 app.get('/', function(req, res) {
+  res.redirect('/apps');
 });
 
 app.get('/:section', function(req, res) {
