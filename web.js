@@ -13,6 +13,17 @@ var app = express.createServer(
   require('connect-form')({ keepExtensions: true })
 );
 
+if (process.env.NODE_ENV == 'production') {
+  app.get('*', function(req, res, next) {
+    if (req.headers['x-forwarded-proto'] != 'https') {
+      console.log('https://' + req.headers['host'] + req.url);
+      res.redirect('https://' + req.headers['host'] + req.url);
+    } else {
+      next()
+    }
+  })
+}
+
 app.get('/kikai.css', function(req, res) {
   res.contentType('text/css');
   res.send(sass.render(fs.readFileSync('views/kikai.sass', 'utf8')));
