@@ -40,6 +40,7 @@ $(window).ready(function() {
 
   $('input.param').bind('keyup', function(ev) {
     var endpoint = $(ev.target).parents('.endpoint');
+    $(ev.target).css('background-color', '#fff');
     calculate_request(endpoint);
     calculate_response(endpoint);
   });
