@@ -23,7 +23,7 @@ endpoints:
           FIXME
   - endpoint:
       action: PUT /apps/:app/stack
-      text: Add a domain to an app
+      text: Migrate an app to a new stack
       params:
         - name: app
           text: the app name
