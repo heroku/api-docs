@@ -11,7 +11,7 @@
       .status.error
         img(src="/error.png")
       span.action= endpoint.action
-    div.text= endpoint.text
+    div.text!= text_as_html(endpoint.text)
     - if (endpoint.params)
       div.params
         - endpoint.params.forEach(function(param) {

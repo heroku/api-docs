@@ -148,6 +148,11 @@ app.helpers({
     console.log(path);
     var active_class = (current_section == path) ? 'active' : '';
     return('<li class="' + active_class + '"><a href="/' + path + '">' + name + '</a></li>');
+  },
+  text_as_html: function(text) {
+    text = text.replace(/\n/g, '<br>');
+    text = text.replace(/\+([^+]+)\+/g, '<b>$1</b>');
+    return(text);
   }
 });
 
