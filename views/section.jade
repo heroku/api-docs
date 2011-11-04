@@ -4,6 +4,12 @@
   div.endpoint
     h4
       input.execute(type="button", value="Execute")
+      .status.spinner
+        img(src="/spinner.gif")
+      .status.success
+        img(src="/success.png")
+      .status.error
+        img(src="/error.png")
       span.action= endpoint.action
     div.text= endpoint.text
     - if (endpoint.params)
@@ -16,12 +22,13 @@
                 input.param(name=param.name, type="text", size="10")
               div.text= param.text
         - })
+    input.sample.json(type="hidden", value=endpoint.response.json)
     input.sample.xml(type="hidden", value=endpoint.response.xml)
     div.web.request
       h4 Request
       textarea(readonly)
     div.web.response
       h4 Response
-      textarea= endpoint.response.xml
+      textarea(readonly)
 
 - })

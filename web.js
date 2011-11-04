@@ -10,6 +10,7 @@ var app = express.createServer(
   express.logger(),
   express.cookieParser(),
   express.session({ secret: process.env.SECRET }),
+  express.static(__dirname + '/public'),
   require('connect-form')({ keepExtensions: true })
 );
 
@@ -27,11 +28,6 @@ if (process.env.NODE_ENV == 'production') {
 app.get('/kikai.css', function(req, res) {
   res.contentType('text/css');
   res.send(sass.render(fs.readFileSync('views/kikai.sass', 'utf8')));
-});
-
-app.get('/kikai.js', function(req, res) {
-  res.contentType('text/javascript');
-  res.send(fs.readFileSync('views/kikai.js', 'utf8'));
 });
 
 app.get('/', function(req, res) {
@@ -65,7 +61,7 @@ app.post('/request', function(req, res, next) {
 
         var options = {
           method: method,
-          headers: { 'Accept': 'application/xml', 'Authorization': auth },
+          headers: { 'Accept': fields.accept, 'Authorization': auth },
         }
 
         console.log(qs.parse(fields.params));
@@ -84,12 +80,11 @@ app.post('/request', function(req, res, next) {
         var request = rest.request('https://api.heroku.com' + path, options);
 
         request.on('success', function(data) {
-          res.send(data);
+          res.send(data, 200);
         });
 
-        request.on('error', function(data) {
-          console.log('error:' + data);
-          res.send(data);
+        request.on('error', function(data, response) {
+          res.send(data, response.statusCode);
         });
       }
     });
@@ -105,6 +100,10 @@ function prettify_xml(xml) {
 }
 
 function prettify_json(json) {
+  if (json) {
+    json = json.replace(/\\t/ig, '  ');
+    console.log(json);
+  }
   return(json);
 }
 
