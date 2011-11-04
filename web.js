@@ -8,14 +8,7 @@ var yaml    = require('yamlparser');
 
 var api_docs = {};
 
-fs.readdir(__dirname + '/api', function(err, files) {
-  files.forEach(function(file) {
-    var sp = file.split('.');
-    if (sp[1] == 'yml') {
-      api_docs[sp[0]] = fs.readFileSync('api/' + file, 'utf8');
-    }
-  });
-});
+read_api_docs();
 
 var app = express.createServer(
   express.logger(),
@@ -44,7 +37,10 @@ app.get('/', function(req, res) {
   res.redirect('/apps');
 });
 
-app.get('/:section', function(req, res) {
+app.get('/:section', function(req, res, next) {
+  if (process.env.NODE_ENV != 'production')
+    read_api_docs();
+
   if (!api_docs[req.params.section]) { next('no such section') }
   else {
     var api = yaml.eval(api_docs[req.params.section]);
@@ -84,19 +80,31 @@ app.post('/request', function(req, res, next) {
             options.query = fields.params;
             break;
           case 'POST':
-            options.data = qs.parse(fields.params);
+            if (fields.params.indexOf('=') > -1) {
+              options.data = qs.parse(fields.params);
+            } else {
+              options.data = fields.params;
+              options.headers['Content-Length'] = fields.params.length.toString();
+            }
             break;
           case 'PUT':
-            options.data = qs.parse(fields.params);
+            if (fields.params.indexOf('=') > -1) {
+              options.data = qs.parse(fields.params);
+            } else {
+              options.data = fields.params;
+              options.headers['Content-Length'] = fields.params.length.toString();
+            }
+            break;
           case 'DELETE':
             options.headers['Content-Length'] = '0';
             break;
         }
 
+        //var request = rest.request('http://localhost:9000' + path, options);
         var request = rest.request('https://api.heroku.com' + path, options);
 
         request.on('success', function(data, response) {
-          res.send('HTTP/1.1 ' + response.headers.status + '\n' + data, 200);
+          res.send('HTTP/1.1 200 OK\n' + data, 200);
         });
 
         request.on('error', function(data, response) {
@@ -110,6 +118,7 @@ app.post('/request', function(req, res, next) {
 function prettify_xml(xml) {
   if (xml) {
     xml = xml.replace(/\\t/ig, '  ');
+    xml = xml.replace(/\\-/ig, '-');
   }
   return(xml);
 }
@@ -117,8 +126,20 @@ function prettify_xml(xml) {
 function prettify_json(json) {
   if (json) {
     json = json.replace(/\\t/ig, '  ');
+    json = json.replace(/\\-/ig, '-');
   }
   return(json);
+}
+
+function read_api_docs() {
+  fs.readdir(__dirname + '/api', function(err, files) {
+    files.forEach(function(file) {
+      var sp = file.split('.');
+      if (sp[1] == 'yml') {
+        api_docs[sp[0]] = fs.readFileSync('api/' + file, 'utf8');
+      }
+    });
+  });
 }
 
 app.helpers({

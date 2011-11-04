@@ -71,7 +71,11 @@ function flatten_params(params) {
   var flattened_params = [];
 
   $.each(params, function(key, val) {
-    flattened_params.push(key + '=' + escape(val));
+    if (key == 'body') {
+      flattened_params.push(encodeURIComponent(val))
+    } else {
+      flattened_params.push(key + '=' + encodeURIComponent(val));
+    }
   });
 
   return(flattened_params.join('&'));

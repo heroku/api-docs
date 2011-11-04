@@ -1,0 +1,72 @@
+---
+title: "Apps"
+endpoints:
+  - endpoint:
+      action: GET /apps/:app/domains
+      text: List domains for an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          [
+          \t{
+          \t\t"id": 49458,
+          \t\t"app_id": 278620,
+          \t\t"domain": "foo.exampleiii.org",
+          \t\t"base_domain": "exampleiii.org",
+          \t\t"default": null,
+          \t\t"created_at": "2011/01/01 00:00:00 -0700",
+          \t\t"updated_at": "2011/01/01 00:00:00 -0700"
+          \t}
+          ]
+        xml: |
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <domain-names type="array">
+          \t<domain-name>
+          \t\t<id type="integer">000000</id>
+          \t\t<app-id type="integer">000000</app-id>
+          \t\t<domain>sub.example.org</domain>
+          \t\t<base-domain>example.org</base-domain>
+          \t\t<default type="boolean" nil="true"></default>
+          \t\t<created-at type="datetime">2011-01-01T00:00:00-07:00</created-at>
+          \t\t<updated-at type="datetime">2011-01-01T00:00:00-07:00</updated-at>
+          \t</domain-name>
+          </domain-names>
+  - endpoint:
+      action: POST /apps/:app/domains
+      text: Add a domain to an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+        - name: 'domain_name[domain]'
+          text: the domain to add
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"domain": "other.example.org"
+          }
+        xml: |
+          HTTP/1.1 200 OK
+  - endpoint:
+      action: DELETE /apps/:app/domains/:domain_name
+      text: Remove a collaborator from an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+        - name: domain_name 
+          text: the domain to remove
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {}
+        xml: |
+          HTTP/1.1 200 OK
