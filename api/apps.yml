@@ -6,6 +6,7 @@ endpoints:
       text: List apps
       response:
         json: |
+          HTTP/1.1 200 OK
           [
           \t{
           \t\t"id": 000000,
@@ -22,6 +23,7 @@ endpoints:
           \t}
           ]
         xml: |
+          HTTP/1.1 200 OK
           <?xml version="1.0" encoding="UTF-8"?>
           <apps type="array">
           \t<app>
@@ -44,17 +46,15 @@ endpoints:
           \t</app>
           </apps>
   - endpoint:
-      action: POST /apps
-      text: Create an app
+      action: GET /apps/:name
+      text: Get info for an app
       params:
-        - name: 'app[name]'
+        - name: name
           text: the app name
-          required: false
-        - name: 'app[stack]'
-          text: the stack
-          required: false
+          required: true
       response:
         json: |
+          HTTP/1.1 200 OK
           {
           \t"id": 000000,
           \t"name": "example",
@@ -69,6 +69,7 @@ endpoints:
           \t"workers": 0
           }
         xml: |
+          HTTP/1.1 200 OK
           <?xml version="1.0">
           <app>
           \t<created-at type="datetime">2011-01-01T00:00:00-07:00</created-at>
@@ -88,3 +89,81 @@ endpoints:
           \t<git_url>git@heroku.com:example.git</git_url>
           \t<database_size>0</database_size>
           </app>
+  - endpoint:
+      action: POST /apps
+      text: Create an app
+      params:
+        - name: 'app[name]'
+          text: the app name
+          required: false
+        - name: 'app[stack]'
+          text: the stack
+          required: false
+      response:
+        json: |
+          HTTP/1.1 202 Accepted
+          {
+          \t"id": 000000,
+          \t"name": "example",
+          \t"create_status": "complete",
+          \t"created_at": "2011/01/01 00:00:00 -0700",
+          \t"stack": "cedar",
+          \t"requested_stack": null,
+          \t"repo_migrate_status": "complete",
+          \t"slug_size": 1000000,
+          \t"repo_size": 1000000,
+          \t"dynos": 1,
+          \t"workers": 0
+          }
+        xml: |
+          HTTP/1.1 202 Accepted
+          <?xml version="1.0">
+          <app>
+          \t<created-at type="datetime">2011-01-01T00:00:00-07:00</created-at>
+          \t<dynos type="integer">1</dynos>
+          \t<name>example</name>
+          \t<repo-size type="integer">1000000</repo-size>
+          \t<requested-stack nil="true"></requested-stack>
+          \t<slug-size type="integer">1000000</slug-size>
+          \t<stack>cedar</stack>
+          \t<workers type="integer">0</workers>
+          \t<create-status type="symbol">complete</create-status>
+          \t<repo-migrate-status type="symbol">complete</repo-migrate-status>
+          \t<id>app000000@heroku.com</id>
+          \t<domain_name></domain_name>
+          \t<owner>owner@example.org</owner>
+          \t<web_url>http://example.herokuapp.com/</web_url>
+          \t<git_url>git@heroku.com:example.git</git_url>
+          \t<database_size>0</database_size>
+          </app>
+  - endpoint:
+      action: PUT /apps/:name
+      text: Rename an app
+      params:
+        - name: name
+          text: the original app name
+          required: true 
+        - name: 'app[name]'
+          text: the new app name
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"name": "newname"
+          }
+        xml: |
+          HTTP/1.1 200 OK
+  - endpoint:
+      action: DELETE /apps/:name
+      text: Create an app
+      params:
+        - name: name
+          text: the app name
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {}
+        xml: |
+          HTTP/1.1 200 OK

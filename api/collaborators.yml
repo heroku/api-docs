@@ -1,0 +1,58 @@
+---
+title: "Apps"
+endpoints:
+  - endpoint:
+      action: GET /apps/:app/collaborators
+      text: List collaborators for an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+      response:
+        json: |
+          FIXME
+        xml: |
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <collaborators>
+          \t<collaborator>
+          \t\t<email>owner@example.org</email>
+          \t\t<access>edit</access>
+          \t</collaborator>
+          \t<collaborator>
+          \t\t<email>invitee@example.org</email>
+          \t\t<access>invited</access>
+          \t</collaborator>
+          </collaborators>
+  - endpoint:
+      action: POST /apps/:app/collaborators
+      text: Add a collaborator to an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+        - name: 'collaborator[email]'
+          text: the email of the user to add as a collaborator
+          required: true
+      response:
+        json: |
+          FIXME
+        xml: |
+          HTTP/1.1 200 OK
+          invitee@example.org added as a collaborator on example.
+  - endpoint:
+      action: DELETE /apps/:app/collaborators/:email
+      text: Remove a collaborator from an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+        - name: email
+          text: the email of the user to add as a collaborator
+          required: true
+      response:
+        json: |
+          FIXME
+        xml: |
+          HTTP/1.1 200 OK
+          invitee@example.org has been removed as a collaborator on example.

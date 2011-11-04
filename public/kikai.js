@@ -3,8 +3,13 @@ $(window).ready(function() {
   $('input.execute').click(function(ev) {
     var button = ev.target;
     var endpoint = $(button).parents('.endpoint');
-    var action = $(endpoint).find('.action').text();
     var apikey = $('#api_key input').val();
+
+    if (! (validate_params(endpoint))) {
+      return;
+    }
+
+    var action_and_params = action_and_params_for_endpoint(endpoint);
 
     calculate_request(endpoint);
     calculate_response(endpoint, true);
@@ -16,8 +21,8 @@ $(window).ready(function() {
       url: '/request',
       data: {
         accept: $('#accept select').val(),
-        action: action,
-        params: calculate_params(endpoint),
+        action: action_and_params.action,
+        params: flatten_params(action_and_params.params),
         apikey: apikey
       },
       success: function(data) {
@@ -61,27 +66,49 @@ $(window).ready(function() {
   });
 });
 
-function calculate_params(endpoint) {
-  var params = [];
+function flatten_params(params) {
+  var flattened_params = [];
+
+  $.each(params, function(key, val) {
+    flattened_params.push(key + '=' + escape(val));
+  });
+
+  return(flattened_params.join('&'));
+}
+
+function params_for_endpoint(endpoint) {
+  var params = {};
 
   $(endpoint).find('input.param').each(function() {
     if ($(this).val() != '') {
       var name = $(this).attr('name');
       var value = $(this).val();
-      params.push(name + '=' + escape(value));
+      params[name] = value;
     }
   });
 
-  return(params.join('&'));
+  return(params);
+}
+
+function action_and_params_for_endpoint(endpoint) {
+  var action = $(endpoint).find('.action').text();
+  var params = params_for_endpoint(endpoint);
+  var matched_params = action.match(/(:[^\/]+)/g);
+
+  if (matched_params) {
+    $.each(matched_params, function(idx, action_param) {
+      var name = action_param.substring(1);
+      action = action.replace(action_param, params[name] ? encodeURIComponent(params[name]) : action_param);
+      delete params[name]
+    });
+  }
+
+  return({ action:action, params:params });
 }
 
 function calculate_request(endpoint) {
-  var request = $(endpoint).find('.action').text();
-  var params = calculate_params(endpoint);
-
-  request += '\n';
-  request += params
-
+  var action_and_params = action_and_params_for_endpoint(endpoint);
+  request = action_and_params.action + '\n' + flatten_params(action_and_params.params);
   $(endpoint).find('.request textarea').text(request);
 }
 
@@ -116,6 +143,23 @@ function short_accept(accept) {
     case 'application/xml':  return('xml');
     default: return('unknown');
   }
+}
+
+function validate_params(endpoint) {
+  var valid = true;
+
+  $(endpoint).find('div.param').each(function(idx, param) {
+    if ($(param).hasClass('required')) {
+      var input = $(param).find('input.param');
+
+      if ($(input).val() == '') {
+        $(input).css('background-color', '#fcc');
+        valid = false;
+      }
+    }
+  });
+
+  return(valid);
 }
 
 function enable_status(endpoint, status) {

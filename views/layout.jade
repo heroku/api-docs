@@ -22,11 +22,7 @@ html(lang="en")
         h1 Heroku API
           
       ul.sidebar
-        li.active
-          a(href="/apps") Apps
-        li
-          a(href="/config") Config
-        li
-          a(href="/domains") Domains
+        !{ section_li("apps", "Apps", current_section) }
+        !{ section_li("collaborators", "Collaborators", current_section) }
 
       #content!= body

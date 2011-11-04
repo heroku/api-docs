@@ -6,6 +6,17 @@ var sass    = require('sass');
 var sys     = require('sys');
 var yaml    = require('yamlparser');
 
+var api_docs = {};
+
+fs.readdir(__dirname + '/api', function(err, files) {
+  files.forEach(function(file) {
+    var sp = file.split('.');
+    if (sp[1] == 'yml') {
+      api_docs[sp[0]] = fs.readFileSync('api/' + file, 'utf8');
+    }
+  });
+});
+
 var app = express.createServer(
   express.logger(),
   express.cookieParser(),
@@ -17,7 +28,6 @@ var app = express.createServer(
 if (process.env.NODE_ENV == 'production') {
   app.get('*', function(req, res, next) {
     if (req.headers['x-forwarded-proto'] != 'https') {
-      console.log('https://' + req.headers['host'] + req.url);
       res.redirect('https://' + req.headers['host'] + req.url);
     } else {
       next()
@@ -35,16 +45,21 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:section', function(req, res) {
-  var api = yaml.eval(fs.readFileSync('api/' + req.params.section + '.yml', 'utf8'));
+  if (!api_docs[req.params.section]) { next('no such section') }
+  else {
+    var api = yaml.eval(api_docs[req.params.section]);
 
-  for (var i=0; i<api.endpoints.length; i++) {
-    api.endpoints[i].endpoint.params = api.endpoints[i].endpoint.params || [];
-    api.endpoints[i].endpoint.response = api.endpoints[i].endpoint.response || {};
-    api.endpoints[i].endpoint.response.json = prettify_json(api.endpoints[i].endpoint.response.json);
-    api.endpoints[i].endpoint.response.xml  = prettify_xml(api.endpoints[i].endpoint.response.xml);
+    for (var i=0; i<api.endpoints.length; i++) {
+      api.endpoints[i].endpoint.params = api.endpoints[i].endpoint.params || [];
+      api.endpoints[i].endpoint.response = api.endpoints[i].endpoint.response || {};
+      api.endpoints[i].endpoint.response.json = prettify_json(api.endpoints[i].endpoint.response.json);
+      api.endpoints[i].endpoint.response.xml  = prettify_xml(api.endpoints[i].endpoint.response.xml);
+    }
+
+    var current_section = req.url.substring(1);
+
+    res.render('section.jade', { api: api, current_section: current_section });
   }
-
-  res.render('section.jade', { api: api });
 });
 
 app.post('/request', function(req, res, next) {
@@ -64,8 +79,6 @@ app.post('/request', function(req, res, next) {
           headers: { 'Accept': fields.accept, 'Authorization': auth },
         }
 
-        console.log(qs.parse(fields.params));
-
         switch(method) {
           case 'GET':
             options.query = fields.params;
@@ -73,18 +86,21 @@ app.post('/request', function(req, res, next) {
           case 'POST':
             options.data = qs.parse(fields.params);
             break;
+          case 'PUT':
+            options.data = qs.parse(fields.params);
+          case 'DELETE':
+            options.headers['Content-Length'] = '0';
+            break;
         }
-
-        console.log(options);
 
         var request = rest.request('https://api.heroku.com' + path, options);
 
-        request.on('success', function(data) {
-          res.send(data, 200);
+        request.on('success', function(data, response) {
+          res.send('HTTP/1.1 ' + response.headers.status + '\n' + data, 200);
         });
 
         request.on('error', function(data, response) {
-          res.send(data, response.statusCode);
+          res.send('HTTP/1.1 ' + response.headers.status + '\n' + data, response.statusCode);
         });
       }
     });
@@ -94,7 +110,6 @@ app.post('/request', function(req, res, next) {
 function prettify_xml(xml) {
   if (xml) {
     xml = xml.replace(/\\t/ig, '  ');
-    console.log(xml);
   }
   return(xml);
 }
@@ -102,10 +117,18 @@ function prettify_xml(xml) {
 function prettify_json(json) {
   if (json) {
     json = json.replace(/\\t/ig, '  ');
-    console.log(json);
   }
   return(json);
 }
+
+app.helpers({
+  section_li: function(path, name, current_section) {
+    console.log(current_section);
+    console.log(path);
+    var active_class = (current_section == path) ? 'active' : '';
+    return('<li class="' + active_class + '"><a href="/' + path + '">' + name + '</a></li>');
+  }
+});
 
 var port = process.env.PORT || 3000;
 console.log('listening on port: %s', port);
