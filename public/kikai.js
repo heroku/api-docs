@@ -137,8 +137,10 @@ function calculate_response(endpoint, ignore_blank) {
     var short = short_accept($('#accept select').val());
     var data = $(endpoint).find('input.sample.' + short).val();
     $(endpoint).find('.response textarea').text(data);
+    $(endpoint).find('.response textarea').css('background-image', 'url(/sample.png)');
   } else {
     $(endpoint).find('.response textarea').text('');
+    $(endpoint).find('.response textarea').css('background-image', '');
   }
 }
 
