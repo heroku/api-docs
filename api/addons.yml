@@ -1,0 +1,25 @@
+---
+title: "Addons"
+endpoints:
+  - endpoint:
+      action: GET /apps/:app/addons
+      text: List addons installed on an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          [
+          \t{
+          \t\t"name": "example:basic",
+          \t\t"description": "Example Basic",
+          \t\t"url": "http://devcenter.heroku.com/articles/example-basic",
+          \t\t"state": "public",
+          \t\t"beta": false,
+          \t\t"configured": true
+          \t}
+          ]
+        xml: |
+          FIXME
