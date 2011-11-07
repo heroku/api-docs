@@ -1,0 +1,58 @@
+---
+title: "Apps"
+endpoints:
+  - endpoint:
+      action: GET /apps/:app/config_vars
+      text: List config vars for an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"KEY1": "value1",
+          \t"KEY2": "value2"
+          }
+        xml: |
+          FIXME
+  - endpoint:
+      action: PUT /apps/:app/config_vars
+      text: Add config vars to an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+        - name: body
+          text: the new config vars (as a JSON hash)
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"KEY1": "value1",
+          \t"KEY2": "value2",
+          \t"KEY3": "newvalue"
+          }
+        xml: |
+          FIXME
+  - endpoint:
+      action: DELETE /apps/:app/config_vars/:key
+      text: Remove a config var from an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+        - name: key
+          text: the config var to remove
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"KEY1": "remaining",
+          \t"KEY2": "vars"
+          }
+        xml: |
+          FIXME
