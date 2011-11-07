@@ -106,6 +106,11 @@ app.post('/request', function(req, res, next) {
         var request = rest.request('https://api.heroku.com' + path, options);
 
         request.on('success', function(data, response) {
+          switch(response.headers['content-type'].split(';')[0]) {
+            case 'application/json':
+              data = JSON.stringify(JSON.parse(data), null, '  ');
+              break;
+          }
           res.send('HTTP/1.1 200 OK\n' + data, 200);
         });
 
