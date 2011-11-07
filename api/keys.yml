@@ -1,0 +1,50 @@
+---
+title: "SSH Keys"
+endpoints:
+  - endpoint:
+      action: GET /user/keys
+      text: List SSH keys
+      response:
+        json: |
+          FIXME
+        xml: |
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <keys type="array">
+          \t<key>
+          \t\t<contents>ssh-rsa 000000000000 key@localhost</contents>
+          \t\t<email>keyowner@example.org</email>
+          \t</key>
+          </keys>
+  - endpoint:
+      action: POST /user/keys
+      text: Associate an SSH key with this account
+      params:
+        - name: body
+          text: the ssh key
+          required: true
+      response:
+        json: |
+          FIXME
+        xml: |
+          HTTP/1.1 200 OK
+  - endpoint:
+      action: DELETE /user/keys/:key
+      text: Remove an SSH key from this account
+      params:
+        - name: key
+          text: the name of the key
+          required: true
+      response:
+        json: |
+          FIXME
+        xml: |
+          HTTP/1.1 200 OK
+  - endpoint:
+      action: DELETE /user/keys
+      text: Remove all SSH keys from this account
+      response:
+        json: |
+          FIXME
+        xml: |
+          HTTP/1.1 200 OK
