@@ -155,6 +155,21 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
   - endpoint:
+      action: POST /apps/:app/server/maintenance
+      text: Toggle maintenance mode for an app
+      params:
+        - name: app
+          text: app name
+          required: true
+        - name: maintenance_mode
+          text: 1 for on, 0 for off
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+        xml: |
+          HTTP/1.1 200 OK
+  - endpoint:
       action: DELETE /apps/:name
       text: Create an app
       params:
