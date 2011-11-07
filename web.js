@@ -83,16 +83,18 @@ app.post('/request', function(req, res, next) {
             if (fields.params.indexOf('=') > -1) {
               options.data = qs.parse(fields.params);
             } else {
-              options.data = fields.params;
-              options.headers['Content-Length'] = fields.params.length.toString();
+              var data = decodeURIComponent(fields.params);
+              options.data = data;
+              options.headers['Content-Length'] = data.length.toString();
             }
             break;
           case 'PUT':
             if (fields.params.indexOf('=') > -1) {
               options.data = qs.parse(fields.params);
             } else {
-              options.data = fields.params;
-              options.headers['Content-Length'] = fields.params.length.toString();
+              var data = decodeURIComponent(fields.params);
+              options.data = data;
+              options.headers['Content-Length'] = data.length.toString();
             }
             break;
           case 'DELETE':
@@ -140,6 +142,12 @@ function read_api_docs() {
       }
     });
   });
+}
+
+function full_uri_escape(string) {
+  string = encodeURIComponent(string);
+  string = string.replace('.', '%2E');
+  return(string);
 }
 
 app.helpers({

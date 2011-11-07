@@ -72,9 +72,9 @@ function flatten_params(params) {
 
   $.each(params, function(key, val) {
     if (key == 'body') {
-      flattened_params.push(encodeURIComponent(val))
+      flattened_params.push(full_uri_escape(val))
     } else {
-      flattened_params.push(key + '=' + encodeURIComponent(val));
+      flattened_params.push(key + '=' + full_uri_escape(val));
     }
   });
 
@@ -103,7 +103,7 @@ function action_and_params_for_endpoint(endpoint) {
   if (matched_params) {
     $.each(matched_params, function(idx, action_param) {
       var name = action_param.substring(1);
-      action = action.replace(action_param, params[name] ? encodeURIComponent(params[name]) : action_param);
+      action = action.replace(action_param, params[name] ? full_uri_escape(params[name]) : action_param);
       delete params[name]
     });
   }
@@ -123,7 +123,7 @@ function calculate_request(endpoint) {
   var curl = '';
   curl += 'curl -H "Accept: ' + accept + '" -u :' + apikey + ' \\\n';
   $.each(action_and_params.params, function(key, val) {
-    curl += '  -d "' + key + '=' + encodeURIComponent(val) + '" \\\n';
+    curl += '  -d "' + key + '=' + full_uri_escape(val) + '" \\\n';
   });
   curl += '  -X ' + method + ' https://api.heroku.com' + path;
   $(endpoint).find('.request.curl textarea').text(curl);
@@ -184,4 +184,10 @@ function validate_params(endpoint) {
 function enable_status(endpoint, status) {
   $(endpoint).find('.status').css('display', 'none');
   $(endpoint).find('.' + status).css('display', 'block');
+}
+
+function full_uri_escape(string) {
+  string = encodeURIComponent(string);
+  string = string.replace('.', '%2E');
+  return(string);
 }
