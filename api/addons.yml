@@ -2,6 +2,24 @@
 title: "Addons"
 endpoints:
   - endpoint:
+      action: GET /addons
+      text: List all available addons
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          [
+          \t{
+          \t\t"name": "example:basic",
+          \t\t"description": "Example Basic",
+          \t\t"url": "http://devcenter.heroku.com/articles/example-basic",
+          \t\t"state": "public",
+          \t\t"beta": false,
+          \t\t"configured": true
+          \t}
+          ]
+        xml: |
+          FIXME
+  - endpoint:
       action: GET /apps/:app/addons
       text: List addons installed on an app
       params:
@@ -21,5 +39,65 @@ endpoints:
           \t\t"configured": true
           \t}
           ]
+        xml: |
+          FIXME
+  - endpoint:
+      action: POST /apps/:app/addons/:addon
+      text: Install an addon to an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+        - name: addon
+          text: the addon name
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"status": "Installed",
+          \t"message": null,
+          \t"price": "free"
+          }
+        xml: |
+          FIXME
+  - endpoint:
+      action: PUT /apps/:app/addons/:addon
+      text: Upgrade an addon to an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+        - name: addon
+          text: the addon name
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"status": "Installed",
+          \t"message": null,
+          \t"price": "$5/mo"
+          }
+        xml: |
+          FIXME
+  - endpoint:
+      action: DELETE /apps/:app/addons/:addon
+      text: Uninstall an addon from an app
+      params:
+        - name: app
+          text: the app name
+          required: true
+        - name: addon
+          text: the addon name
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"status": "Installed",
+          \t"message": null,
+          \t"price": "$5/mo"
+          }
         xml: |
           FIXME
