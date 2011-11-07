@@ -55,6 +55,7 @@ $(window).ready(function() {
     $.cookie('accept', $(ev.target).val(), { expires: 3650 });
 
     $('.endpoint').each(function() {
+      calculate_request(this);
       calculate_response(this);
     });
   });
