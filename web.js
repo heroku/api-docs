@@ -152,8 +152,6 @@ function full_uri_escape(string) {
 
 app.helpers({
   section_li: function(path, name, current_section) {
-    console.log(current_section);
-    console.log(path);
     var active_class = (current_section == path) ? 'active' : '';
     return('<li class="' + active_class + '"><a href="/' + path + '">' + name + '</a></li>');
   },
