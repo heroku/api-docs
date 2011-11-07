@@ -26,8 +26,11 @@
         - })
     input.sample.json(type="hidden", value=endpoint.response.json)
     input.sample.xml(type="hidden", value=endpoint.response.xml)
-    div.web.request
-      h4 Request
+    div.web.request.http
+      h4 Request (HTTP)
+      textarea(readonly)
+    div.web.request.curl
+      h4 Request (curl)
       textarea(readonly)
     div.web.response
       h4 Response

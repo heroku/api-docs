@@ -114,7 +114,19 @@ function action_and_params_for_endpoint(endpoint) {
 function calculate_request(endpoint) {
   var action_and_params = action_and_params_for_endpoint(endpoint);
   request = action_and_params.action + '\n' + flatten_params(action_and_params.params);
-  $(endpoint).find('.request textarea').text(request);
+  $(endpoint).find('.request.http textarea').text(request);
+
+  var accept = $('#accept select').val();
+  var apikey = $('#api_key input').val();
+  var method = action_and_params.action.split(' ')[0];
+  var path = action_and_params.action.split(' ')[1];
+  var curl = '';
+  curl += 'curl -H "Accept: ' + accept + '" -u :' + apikey + ' \\\n';
+  $.each(action_and_params.params, function(key, val) {
+    curl += '  -d "' + key + '=' + encodeURIComponent(val) + '" \\\n';
+  });
+  curl += '  -X ' + method + ' https://api.heroku.com' + path;
+  $(endpoint).find('.request.curl textarea').text(curl);
 }
 
 function calculate_response(endpoint, ignore_blank) {
