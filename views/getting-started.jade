@@ -1,0 +1,24 @@
+#getting-started
+
+  h2 Authentication
+
+  .section
+    p
+      | Authentication to the Heroku API is accomplished using an API key, available on the
+      | <a href="https://api.heroku.com/account">My Account</a> page.
+    p
+      | Once you have an API key, use HTTP Basic Authentication with a blank username and
+      | the API key as a password. Here's an example using <code>curl</code> (the colon separates username and password):
+    p.code
+      | curl -H "Accept: application/json" -U :apikeyhere https://api.heroku.com/apps
+
+  h2 Headers
+
+  .section
+    p
+      | An <code>Accept</code> header that contains either <code>application/json</code> or
+      | <code>application/xml</code> is required to use the API.
+    p
+      | To list all of your apps in XML, use this <code>curl</code> command:
+    p.code
+      | curl -H "Accept: application/xml" -U :apikeyhere https://api.heroku.com/apps

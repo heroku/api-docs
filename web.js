@@ -34,7 +34,7 @@ app.get('/kikai.css', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-  res.redirect('/apps');
+  res.render('getting-started.jade', { current_section: '' });
 });
 
 app.get('/:section', function(req, res, next) {
