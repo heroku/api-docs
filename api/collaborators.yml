@@ -10,13 +10,23 @@ endpoints:
           required: true
       response:
         json: |
-          FIXME
+          HTTP/1.1 200 OK
+          [
+          \t{
+          \t\t"access": "edit",
+          \t\t"email": "editor@example.org"
+          \t},
+          \t{
+          \t\t"access": "invited",
+          \t\t"email": "invitee@heroku.com"
+          \t}
+          ]
         xml: |
           HTTP/1.1 200 OK
           <?xml version="1.0" encoding="UTF-8"?>
           <collaborators>
           \t<collaborator>
-          \t\t<email>owner@example.org</email>
+          \t\t<email>editor@example.org</email>
           \t\t<access>edit</access>
           \t</collaborator>
           \t<collaborator>
@@ -36,7 +46,8 @@ endpoints:
           required: true
       response:
         json: |
-          FIXME
+          HTTP/1.1 200 OK
+          david@heroku.com added as a collaborator on rails3-smoke.
         xml: |
           HTTP/1.1 200 OK
           invitee@example.org added as a collaborator on example.
@@ -52,7 +63,8 @@ endpoints:
           required: true
       response:
         json: |
-          FIXME
+          HTTP/1.1 200 OK
+          david@heroku.com has been removed as collaborator on rails3-smoke
         xml: |
           HTTP/1.1 200 OK
           invitee@example.org has been removed as a collaborator on example.
