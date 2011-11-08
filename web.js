@@ -83,7 +83,7 @@ app.post('/request', function(req, res, next) {
             if (fields.params.indexOf('=') > -1) {
               options.data = qs.parse(fields.params);
             } else {
-              var data = decodeURIComponent(fields.params);
+              var data = full_uri_decode(fields.params);
               options.data = data;
               options.headers['Content-Length'] = data.length.toString();
             }
@@ -92,7 +92,7 @@ app.post('/request', function(req, res, next) {
             if (fields.params.indexOf('=') > -1) {
               options.data = qs.parse(fields.params);
             } else {
-              var data = decodeURIComponent(fields.params);
+              var data = full_uri_decode(fields.params);
               options.data = data;
               options.headers['Content-Length'] = data.length.toString();
             }
@@ -149,9 +149,9 @@ function read_api_docs() {
   });
 }
 
-function full_uri_escape(string) {
-  string = encodeURIComponent(string);
-  string = string.replace('.', '%2E');
+function full_uri_decode(string) {
+  string = decodeURIComponent(string);
+  string = string.replace(/\%2E/g, '.');
   return(string);
 }
 
