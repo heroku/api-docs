@@ -24,7 +24,26 @@ endpoints:
           \t}
           ]
         xml: |
-          FIXME
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <releases>
+          \t<release>
+          \t\t<name>v1</name>
+          \t\t<description>Add-on add example:addon</description>
+          \t\t<created_at>2011-01-01T00:00:00-07:00</created_at>
+          \t\t<commit>0f0f0f0</commit>
+          \t\t<user>releasing-user@example.org</user>
+          \t\t<env>
+          \t\t\t<FOO>bar</FOO>
+          \t\t</env>
+          \t\t<addons>
+          \t\t\t<addon>example:addon</addon>
+          \t\t</addons>
+          \t\t<pstable>
+          \t\t\t<ps name="web">bin/web start</web>
+          \t\t</pstable>
+          \t</release>
+          </releases>
   - endpoint:
       action: GET /apps/:app/releases/:release
       text: Get info for a release
@@ -49,7 +68,24 @@ endpoints:
           \t"created_at": "2011/01/01 00:00:00 -0700"
           }
         xml: |
-          FIXME
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <release>
+          \t<name>v1</name>
+          \t<description>Add-on add example:addon</description>
+          \t<created_at>2011-01-01T00:00:00-07:00</created_at>
+          \t<commit>0f0f0f0</commit>
+          \t<user>releasing-user@example.org</user>
+          \t<env>
+          \t\t<FOO>bar</FOO>
+          \t</env>
+          \t<addons>
+          \t\t<addon>example:addon</addon>
+          \t</addons>
+          \t<pstable>
+          \t\t<ps name="web">bin/web start</web>
+          \t</pstable>
+          </release>
   - endpoint:
       action: POST /apps/:app/releases
       text: Rollback to a release
@@ -65,4 +101,5 @@ endpoints:
           HTTP/1.1 200 OK
           v1
         xml: |
-          FIXME
+          HTTP/1.1 200 OK
+          v1
