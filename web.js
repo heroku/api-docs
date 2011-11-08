@@ -108,7 +108,11 @@ app.post('/request', function(req, res, next) {
         request.on('success', function(data, response) {
           switch(response.headers['content-type'].split(';')[0]) {
             case 'application/json':
-              data = JSON.stringify(JSON.parse(data), null, '  ');
+              try {
+                data = JSON.stringify(JSON.parse(data), null, '  ');
+              } catch(error) {
+                console.log('error parsing json: ' + error);
+              }
               break;
           }
           res.send('HTTP/1.1 200 OK\n' + data, 200);
