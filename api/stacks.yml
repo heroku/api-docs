@@ -18,9 +18,17 @@ endpoints:
           \t\t"requested": false,
           \t\t"beta": false
           \t}
-          ],
+          ]
         xml: |
-          FIXME
+          <?xml version="1.0" encoding="UTF-8"?>
+          <stacks>
+          \t<stack>
+          \t\t<name>aspen-mri-1.8.6</name>
+          \t\t<beta>false</beta>
+          \t\t<current>false</current>
+          \t\t<requested>false</requested>
+          \t</stack>
+          </stacks>
   - endpoint:
       action: PUT /apps/:app/stack
       text: Migrate an app to a new stack

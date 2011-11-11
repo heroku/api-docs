@@ -6,7 +6,13 @@ endpoints:
       text: List SSH keys
       response:
         json: |
-          FIXME
+          HTTP/1.1 200 OK
+          [
+          \t{
+          \t\t"contents": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCz29znMi/UJX/nvkRSO5FFugKhU9DkkI53E0vXUnP8zeLFxMgyUqmXryPVjWtGzz2LRWqjm14SbqHAmM44pGHVfBIp6wCKBWSUYGv/FxOulwYgtWzz4moxWLZrFyWWgJAnehcVUifHNgzKwT2ovWm2ns52681Z8yFK3K8/uLStDjLIaPePEOaxaTvgIxZNsfyEoXoHcyTPwdR1GtQuDTuDYqYmjmPCoKybYnXrTQ1QFuQxDneBkswQYSl0H2aLf3uBK4F01hr+azXQuSe39eSV4I/TqzmNJlanpILT9Jz3/J1i4r6brpF3AxLnFnb9ufIbzQAIa/VZIulfrZkcBsUl david@carbon.local",
+          \t\t"email": "keyowner@example.org"
+          \t}
+          ]
         xml: |
           HTTP/1.1 200 OK
           <?xml version="1.0" encoding="UTF-8"?>
@@ -25,7 +31,7 @@ endpoints:
           required: true
       response:
         json: |
-          FIXME
+          HTTP/1.1 200 OK
         xml: |
           HTTP/1.1 200 OK
   - endpoint:
@@ -37,7 +43,7 @@ endpoints:
           required: true
       response:
         json: |
-          FIXME
+          HTTP/1.1 200 OK
         xml: |
           HTTP/1.1 200 OK
   - endpoint:
@@ -45,6 +51,6 @@ endpoints:
       text: Remove all SSH keys from this account
       response:
         json: |
-          FIXME
+          HTTP/1.1 200 OK
         xml: |
           HTTP/1.1 200 OK

@@ -102,8 +102,9 @@ app.post('/request', function(req, res, next) {
             break;
         }
 
-        //var request = rest.request('http://localhost:9000' + path, options);
-        var request = rest.request('https://api.heroku.com' + path, options);
+        // var request = rest.request('http://localhost:6000' + path, options);
+        // var request = rest.request('https://api.heroku.com' + path, options);
+        var request = rest.request('https://api.david.herokudev.com' + path, options);
 
         request.on('success', function(data, response) {
           switch(response.headers['content-type'].split(';')[0]) {

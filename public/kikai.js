@@ -122,7 +122,8 @@ function calculate_request(endpoint) {
   var method = action_and_params.action.split(' ')[0];
   var path = action_and_params.action.split(' ')[1];
   var curl = '';
-  curl += 'curl -H "Accept: ' + accept + '" -u :' + apikey + ' \\\n';
+  curl += 'curl -H "Accept: ' + accept + '"\n';
+  curl += '  -u :' + apikey + ' \\\n';
   $.each(action_and_params.params, function(key, val) {
     curl += '  -d "' + key + '=' + full_uri_encode(val) + '" \\\n';
   });

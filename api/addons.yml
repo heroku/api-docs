@@ -14,11 +14,20 @@ endpoints:
           \t\t"url": "http://devcenter.heroku.com/articles/example-basic",
           \t\t"state": "public",
           \t\t"beta": false,
-          \t\t"configured": true
           \t}
           ]
         xml: |
-          FIXME
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <addons>
+          \t<addon>
+          \t\t<name>example:basic</name>
+          \t\t<description>Example Basic</description>
+          \t\t<url>http://devcenter.heroku.com/articles/example-basic</url>
+          \t\t<state>public</state>
+          \t\t<beta>false</beta>
+          \t</addon>
+          </addons>
   - endpoint:
       action: GET /apps/:app/addons
       text: List addons installed on an app
@@ -40,7 +49,18 @@ endpoints:
           \t}
           ]
         xml: |
-          FIXME
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <addons>
+          \t<addon>
+          \t\t<name>example:basic</name>
+          \t\t<description>Example Basic</description>
+          \t\t<url>http://devcenter.heroku.com/articles/example-basic</url>
+          \t\t<state>public</state>
+          \t\t<beta>false</beta>
+          \t\t<configured>true</configured>
+          \t</addon>
+          </addons>
   - endpoint:
       action: POST /apps/:app/addons/:addon
       text: Install an addon to an app
@@ -60,7 +80,13 @@ endpoints:
           \t"price": "free"
           }
         xml: |
-          FIXME
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <addon>
+          \t<status>Installed</status>
+          \t<message></message>
+          \t<price>free</price>
+          </addon>
   - endpoint:
       action: PUT /apps/:app/addons/:addon
       text: Upgrade an addon to an app
@@ -75,12 +101,18 @@ endpoints:
         json: |
           HTTP/1.1 200 OK
           {
-          \t"status": "Installed",
+          \t"status": "Updated",
           \t"message": null,
           \t"price": "$5/mo"
           }
         xml: |
-          FIXME
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <addon>
+          \t<status>Updated</status>
+          \t<message></message>
+          \t<price>$5/mo</price>
+          </addon>
   - endpoint:
       action: DELETE /apps/:app/addons/:addon
       text: Uninstall an addon from an app
@@ -95,9 +127,15 @@ endpoints:
         json: |
           HTTP/1.1 200 OK
           {
-          \t"status": "Installed",
+          \t"status": "Uninstalled",
           \t"message": null,
           \t"price": "$5/mo"
           }
         xml: |
-          FIXME
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <addon>
+          \t<status>Uninstalled</status>
+          \t<message></message>
+          \t<price>$5/mo</price>
+          </addon>

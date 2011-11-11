@@ -22,7 +22,7 @@
                 input.param(name=param.name, type="text", size="10")
               div.type(class=required_class)
                 = required_class
-              div.text= param.text
+              div.text!= text_as_html(param.text)
         - })
     input.sample.json(type="hidden", value=endpoint.response.json)
     input.sample.xml(type="hidden", value=endpoint.response.xml)

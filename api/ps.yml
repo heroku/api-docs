@@ -29,7 +29,59 @@ endpoints:
           \t}
           ]
         xml: |
-          FIXME
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <processes>
+            <process>
+              <upid>0000000</upid>
+              <process>web.1</process>
+              <type>Dyno</type>
+              <command>dyno</command>
+              <app_name>example</app_name>
+              <slug>0000000_0000</slug>
+              <action>down</action>
+              <state>idle</state>
+              <pretty_state>idle for 2h</pretty_state>
+              <elapsed>0</elapsed>
+              <rendezvous_url></rendezvous_url>
+              <attached>false</attached>
+              <transitioned_at>2011/01/01 00:00:00 -0700</transitioned_at>
+            </process>
+          </processes>
+  - endpoint:
+      action: POST /apps/:app/ps
+      text: |
+        Run a one-off process
+      params:
+        - name: app
+          text: the app name
+          required: true
+        - name: attach
+          text: |
+            +true+: use rendezvous to access stdin/stdout
+            +&lt;blank&gt;+: stream process output to the application log
+        - name: command
+          text: the command to run
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"slug": "0000000_0000",
+          \t"command": "ls",
+          \t"upid": "00000000",
+          \t"process": "run.1",
+          \t"action": "complete",
+          \t"rendezvous_url": "tcp://rendezvous.heroku.com:5000/0000000000000000000",
+          \t"type": "Ps",
+          \t"elapsed": 0,
+          \t"attached": true,
+          \t"transitioned_at": "2011/01/01 00:00:00 -0700",
+          \t"state": "starting"
+          }
+        xml: |
+          HTTP/1.1 200 OK
+          ok
   - endpoint:
       action: POST /apps/:app/ps/restart
       text: |
@@ -91,9 +143,11 @@ endpoints:
           required: true
       response:
         json: |
-          FIXME
+          HTTP/1.1 200 OK
+          2
         xml: |
-          FIXME
+          HTTP/1.1 200 OK
+          2
   - endpoint:
       action: PUT /apps/:app/dynos
       text: |
