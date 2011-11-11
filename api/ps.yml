@@ -81,7 +81,20 @@ endpoints:
           }
         xml: |
           HTTP/1.1 200 OK
-          ok
+          <?xml version="1.0" encoding="UTF-8"?>
+          <process>
+          \t<slug>0000000_0000</slug>
+          \t<command>ls</command>
+          \t<upid>00000000</upid>
+          \t<process>run.1</process>
+          \t<action>complete</action>
+          \t<rendezvous_url>tcp://rendezvous.heroku.com:5000/00000000000000000000</rendezvous_url>
+          \t<type>Ps</type>
+          \t<elapsed>0</elapsed>
+          \t<attached>true</attached>
+          \t<transitioned_at>2011/01/01 00:00:00 -0700</transitioned_at>
+          \t<state>starting</state>
+          </process>
   - endpoint:
       action: POST /apps/:app/ps/restart
       text: |
