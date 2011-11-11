@@ -32,21 +32,21 @@ endpoints:
           HTTP/1.1 200 OK
           <?xml version="1.0" encoding="UTF-8"?>
           <processes>
-            <process>
-              <upid>0000000</upid>
-              <process>web.1</process>
-              <type>Dyno</type>
-              <command>dyno</command>
-              <app_name>example</app_name>
-              <slug>0000000_0000</slug>
-              <action>down</action>
-              <state>idle</state>
-              <pretty_state>idle for 2h</pretty_state>
-              <elapsed>0</elapsed>
-              <rendezvous_url></rendezvous_url>
-              <attached>false</attached>
-              <transitioned_at>2011/01/01 00:00:00 -0700</transitioned_at>
-            </process>
+          \t<process>
+          \t\t<upid>0000000</upid>
+          \t\t<process>web.1</process>
+          \t\t<type>Dyno</type>
+          \t\t<command>dyno</command>
+          \t\t<app_name>example</app_name>
+          \t\t<slug>0000000_0000</slug>
+          \t\t<action>down</action>
+          \t\t<state>idle</state>
+          \t\t<pretty_state>idle for 2h</pretty_state>
+          \t\t<elapsed>0</elapsed>
+          \t\t<rendezvous_url></rendezvous_url>
+          \t\t<attached>false</attached>
+          \t\t<transitioned_at>2011/01/01 00:00:00 -0700</transitioned_at>
+          \t</process>
           </processes>
   - endpoint:
       action: POST /apps/:app/ps
