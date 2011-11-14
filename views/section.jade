@@ -1,6 +1,7 @@
 - api.endpoints.forEach(function(endpoint) {
   - endpoint = endpoint.endpoint
 
+  a(name=anchor(endpoint))
   div.endpoint
     h4
       input.execute(type="button", value="Execute")
@@ -11,8 +12,7 @@
       .status.error
         img(src="/error.png")
       span.action
-        a(name=anchor(endpoint))
-          = endpoint.action
+        = endpoint.action
     div.text!= text_as_html(endpoint.text)
     - if (endpoint.params)
       div.params
