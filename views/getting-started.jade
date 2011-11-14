@@ -37,8 +37,12 @@
     h3 404 Not Found
     p  The API endpoint or resource you are attempting to fetch does not exist.
     h3 412 Precondition Failed
-    p   This API has been deprecated.
-    
+    p  This API has been deprecated.
+    h3 422 Unprocessable Entity
+    p  An error has occurred, see response body for details.
+    h3 423 Locked
+    p  This API command requires confirmation. Pass the app name as a <code>confirm</code> parameter.
+
   h2 Error Responses
 
   .section.errors
