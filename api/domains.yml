@@ -1,5 +1,5 @@
 ---
-title: "Apps"
+title: "Domains"
 endpoints:
   - endpoint:
       action: GET /apps/:app/domains

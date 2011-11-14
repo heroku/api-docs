@@ -21,7 +21,7 @@
             div.param(class=required_class)
               div.name= param.name
               div.input
-                input.param(name=param.name, type="text", size="10")
+                input.param(name=param.name, type="text", size="10", value=param.value)
               div.type(class=required_class)
                 = required_class
               div.text!= text_as_html(param.text)

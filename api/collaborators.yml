@@ -1,5 +1,5 @@
 ---
-title: "Apps"
+title: "Collaborators"
 endpoints:
   - endpoint:
       action: GET /apps/:app/collaborators

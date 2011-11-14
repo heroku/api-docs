@@ -118,6 +118,7 @@ app.post('/request', function(req, res, next) {
         });
 
         request.on('error', function(data, response) {
+          console.log(sys.inspect(response));
           res.send('HTTP/1.1 ' + response.headers.status + '\n' + data, response.statusCode);
         });
       }
@@ -161,8 +162,8 @@ function full_uri_decode(string) {
 function anchor(endpoint) {
   var name = endpoint.action;
   name = name.replace(/ +/g, '');
-  name = name.replace(/\//g, '_');
-  name = name.replace(/:/g, '');
+  name = name.replace(/\/:\w*/g, '');
+  name = name.replace(/\/+/g, '/');
   return(name);
 };
 

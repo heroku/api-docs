@@ -171,7 +171,7 @@ endpoints:
           HTTP/1.1 200 OK
   - endpoint:
       action: DELETE /apps/:name
-      text: Create an app
+      text: Destroy an app
       params:
         - name: name
           text: the app name
