@@ -9,7 +9,7 @@ endpoints:
           text: the app name
           required: true
         - name: logplex
-          text: use logplex to stream logs
+          text: use logplex to stream logs (always +true+)
           required: true
           value: "true"
         - name: num
@@ -28,41 +28,7 @@ endpoints:
       response:
         json: |
           HTTP/1.1 200 OK
-          [
-          \t{
-          \t\t"id": 000000,
-          \t\t"name": "example",
-          \t\t"create_status": "complete",
-          \t\t"created_at": "2011/01/01 00:00:00 -0700",
-          \t\t"stack": "cedar",
-          \t\t"requested_stack": null,
-          \t\t"repo_migrate_status": "complete",
-          \t\t"slug_size": 1000000,
-          \t\t"repo_size": 1000000,
-          \t\t"dynos": 1,
-          \t\t"workers": 0
-          \t}
-          ]
+          https://logplex.heroku.com/sessions/0000000-0000-0000-0000-0000000000
         xml: |
           HTTP/1.1 200 OK
-          <?xml version="1.0" encoding="UTF-8"?>
-          <apps type="array">
-          \t<app>
-          \t\t<created-at type="datetime">2011-01-01T00:00:00-07:00</created-at>
-          \t\t<dynos type="integer">1</dynos>
-          \t\t<name>example</name>
-          \t\t<repo-size type="integer">1000000</repo-size>
-          \t\t<requested-stack nil="true"></requested-stack>
-          \t\t<slug-size type="integer">1000000</slug-size>
-          \t\t<stack>cedar</stack>
-          \t\t<workers type="integer">0</workers>
-          \t\t<create-status type="symbol">complete</create-status>
-          \t\t<repo-migrate-status type="symbol">complete</repo-migrate-status>
-          \t\t<id>app000000@heroku.com</id>
-          \t\t<domain_name></domain_name>
-          \t\t<owner>owner@example.org</owner>
-          \t\t<web_url>http://example.herokuapp.com/</web_url>
-          \t\t<git_url>git@heroku.com:example.git</git_url>
-          \t\t<database_size>0</database_size>
-          \t</app>
-          </apps>
+          https://logplex.heroku.com/sessions/0000000-0000-0000-0000-0000000000
