@@ -43,7 +43,7 @@ app.get('/:section', function(req, res, next) {
 
   if (!api_docs[req.params.section]) { next('no such section') }
   else {
-    var api = yaml.eval(api_docs[req.params.section]);
+    var api = api_docs[req.params.section];
 
     for (var i=0; i<api.endpoints.length; i++) {
       api.endpoints[i].endpoint.params = api.endpoints[i].endpoint.params || [];
@@ -146,7 +146,7 @@ function read_api_docs() {
     files.forEach(function(file) {
       var sp = file.split('.');
       if (sp[1] == 'yml') {
-        api_docs[sp[0]] = fs.readFileSync('api/' + file, 'utf8');
+        api_docs[sp[0]] = yaml.eval(fs.readFileSync('api/' + file, 'utf8'));
       }
     });
   });
@@ -158,10 +158,31 @@ function full_uri_decode(string) {
   return(string);
 }
 
+function anchor(endpoint) {
+  var name = endpoint.action;
+  name = name.replace(/ +/g, '');
+  name = name.replace(/\//g, '_');
+  name = name.replace(/:/g, '');
+  return(name);
+};
+
 app.helpers({
+  anchor: anchor,
+  api_docs: function(name) {
+    return(api_docs[name]);
+  },
   section_li: function(path, name, current_section) {
     var active_class = (current_section == path) ? 'active' : '';
-    return('<li class="' + active_class + '"><a href="/' + path + '">' + name + '</a></li>');
+    var html = '<li class="' + active_class + '"><a href="/' + path + '">' + name + '</a></li>';
+
+    if (current_section == path && api_docs[path]) {
+      api_docs[path].endpoints.forEach(function(endpoint) {
+        var text = endpoint.endpoint.text.split('\n')[0];
+        html += '<li class="item"><a href="#' + anchor(endpoint.endpoint) + '">' + text + '</a></li>';
+      });
+    }
+
+    return(html);
   },
   text_as_html: function(text) {
     text = text.replace(/\n/g, '<br>');

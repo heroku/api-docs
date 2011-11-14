@@ -47,9 +47,21 @@ ul.sidebar
   li
     :border-bottom 1px #999 solid
     &.active
-      :background-color #ddd
+      :background-color #666
+      a
+        :color #fff
+    &.item
+      :background-color #eee
+      :font-size 0.7em
+      :padding-left 4px
     &:hover
-      :background-color #ddd
+      :background-color #666
+      a
+        :color #fff
+    &.item:hover
+      :background-color #fff
+      a
+        :color #333
     a
       :color #333
       :padding 8px 12px
@@ -57,8 +69,6 @@ ul.sidebar
       :text-decoration none
       :display inline-block
       :width 168px
-      &:hover
-        :color #000
 
 #content
   :float right
@@ -168,6 +178,21 @@ ul.sidebar
     :padding 0px 8px
     :border 1px #999 solid
     :margin-bottom 12px
+    h3
+      :background #eee
+      :border 0
+      :border-bottom 1px #999 solid
+      :color #666
+      :padding 4px
+      :margin-bottom 4px
+      :margin-top 12px
+  .response-codes
+    p
+      :margin-top 0px
+      :padding 0
+  .errors
+    .code
+      :margin-top 8px
   p
     :margin 0
     :padding 0

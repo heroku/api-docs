@@ -10,7 +10,9 @@
         img(src="/success.png")
       .status.error
         img(src="/error.png")
-      span.action= endpoint.action
+      span.action
+        a(name=anchor(endpoint))
+          = endpoint.action
     div.text!= text_as_html(endpoint.text)
     - if (endpoint.params)
       div.params
