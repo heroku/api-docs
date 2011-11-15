@@ -13,7 +13,7 @@ endpoints:
           \t\t"name": "example",
           \t\t"create_status": "complete",
           \t\t"created_at": "2011/01/01 00:00:00 -0700",
-          \t\t"stack": "cedar",
+          \t\t"stack": "bamboo-ree-1.8.7",
           \t\t"requested_stack": null,
           \t\t"repo_migrate_status": "complete",
           \t\t"slug_size": 1000000,
@@ -33,7 +33,7 @@ endpoints:
           \t\t<repo-size type="integer">1000000</repo-size>
           \t\t<requested-stack nil="true"></requested-stack>
           \t\t<slug-size type="integer">1000000</slug-size>
-          \t\t<stack>cedar</stack>
+          \t\t<stack>bamboo-ree-1.8.7</stack>
           \t\t<workers type="integer">0</workers>
           \t\t<create-status type="symbol">complete</create-status>
           \t\t<repo-migrate-status type="symbol">complete</repo-migrate-status>
@@ -142,7 +142,7 @@ endpoints:
       params:
         - name: name
           text: the original app name
-          required: true 
+          required: true
         - name: 'app[name]'
           text: the new app name
           required: true
