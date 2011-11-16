@@ -2,7 +2,7 @@
 title: "Logs"
 endpoints:
   - endpoint:
-      action: GET /apps/:app/logs
+      action: GET /v2/apps/:app/logs
       text: Get logs for an app
       params:
         - name: app

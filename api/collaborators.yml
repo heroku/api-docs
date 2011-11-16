@@ -2,7 +2,7 @@
 title: "Collaborators"
 endpoints:
   - endpoint:
-      action: GET /apps/:app/collaborators
+      action: GET /v2/apps/:app/collaborators
       text: List collaborators for an app
       params:
         - name: app
@@ -35,7 +35,7 @@ endpoints:
           \t</collaborator>
           </collaborators>
   - endpoint:
-      action: POST /apps/:app/collaborators
+      action: POST /v2/apps/:app/collaborators
       text: Add a collaborator to an app
       params:
         - name: app
@@ -52,7 +52,7 @@ endpoints:
           HTTP/1.1 200 OK
           invitee@example.org added as a collaborator on example.
   - endpoint:
-      action: DELETE /apps/:app/collaborators/:email
+      action: DELETE /v2/apps/:app/collaborators/:email
       text: Remove a collaborator from an app
       params:
         - name: app

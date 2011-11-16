@@ -2,7 +2,7 @@
 title: "Keys"
 endpoints:
   - endpoint:
-      action: GET /user/keys
+      action: GET /v2/user/keys
       text: List SSH keys
       response:
         json: |
@@ -23,7 +23,7 @@ endpoints:
           \t</key>
           </keys>
   - endpoint:
-      action: POST /user/keys
+      action: POST /v2/user/keys
       text: Associate an SSH key with this account
       params:
         - name: body
@@ -35,7 +35,7 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
   - endpoint:
-      action: DELETE /user/keys/:key
+      action: DELETE /v2/user/keys/:key
       text: Remove an SSH key from this account
       params:
         - name: key
@@ -47,7 +47,7 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
   - endpoint:
-      action: DELETE /user/keys
+      action: DELETE /v2/user/keys
       text: Remove all SSH keys from this account
       response:
         json: |

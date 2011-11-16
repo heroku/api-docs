@@ -2,7 +2,7 @@
 title: "Domains"
 endpoints:
   - endpoint:
-      action: GET /apps/:app/domains
+      action: GET /v2/apps/:app/domains
       text: List domains for an app
       params:
         - name: app
@@ -37,7 +37,7 @@ endpoints:
           \t</domain-name>
           </domain-names>
   - endpoint:
-      action: POST /apps/:app/domains
+      action: POST /v2/apps/:app/domains
       text: Add a domain to an app
       params:
         - name: app
@@ -55,7 +55,7 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
   - endpoint:
-      action: DELETE /apps/:app/domains/:domain_name
+      action: DELETE /v2/apps/:app/domains/:domain_name
       text: Remove a collaborator from an app
       params:
         - name: app

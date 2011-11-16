@@ -2,7 +2,7 @@
 title: "Processes"
 endpoints:
   - endpoint:
-      action: GET /apps/:app/ps
+      action: GET /v2/apps/:app/ps
       text: List processes for an app
       params:
         - name: app
@@ -49,7 +49,7 @@ endpoints:
           \t</process>
           </processes>
   - endpoint:
-      action: POST /apps/:app/ps
+      action: POST /v2/apps/:app/ps
       text: |
         Run a one-off process
       params:
@@ -96,7 +96,7 @@ endpoints:
           \t<state>starting</state>
           </process>
   - endpoint:
-      action: POST /apps/:app/ps/restart
+      action: POST /v2/apps/:app/ps/restart
       text: |
         Restart processes of an app
         Specify either +ps+ or +type+ to restart only the specified processes
@@ -119,7 +119,7 @@ endpoints:
           HTTP/1.1 200 OK
           ok
   - endpoint:
-      action: POST /apps/:app/ps/stop
+      action: POST /v2/apps/:app/ps/stop
       text: |
         Stop processes of an app
         Specify either +ps+ or +type+ to stop the specified processes
@@ -141,7 +141,7 @@ endpoints:
           HTTP/1.1 200 OK
           ok
   - endpoint:
-      action: POST /apps/:app/ps/scale
+      action: POST /v2/apps/:app/ps/scale
       text: |
         Scale processes of an app (cedar only)
       params:
@@ -162,7 +162,7 @@ endpoints:
           HTTP/1.1 200 OK
           2
   - endpoint:
-      action: PUT /apps/:app/dynos
+      action: PUT /v2/apps/:app/dynos
       text: |
         Scale dynos of an app (aspen and bamboo only)
       params:
@@ -183,7 +183,7 @@ endpoints:
           HTTP/1.1 200 OK
           2
   - endpoint:
-      action: PUT /apps/:app/workers
+      action: PUT /v2/apps/:app/workers
       text: |
         Scale workers of an app (aspen and bamboo only)
       params:

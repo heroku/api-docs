@@ -2,7 +2,7 @@
 title: "Stacks"
 endpoints:
   - endpoint:
-      action: GET /apps/:app/stack
+      action: GET /v2/apps/:app/stack
       text: List available stacks for an app
       params:
         - name: app
@@ -30,7 +30,7 @@ endpoints:
           \t</stack>
           </stacks>
   - endpoint:
-      action: PUT /apps/:app/stack
+      action: PUT /v2/apps/:app/stack
       text: Migrate an app to a new stack
       params:
         - name: app

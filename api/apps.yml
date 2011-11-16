@@ -2,7 +2,7 @@
 title: "Apps"
 endpoints:
   - endpoint:
-      action: GET /apps
+      action: GET /v2/apps
       text: List apps
       response:
         json: |
@@ -46,7 +46,7 @@ endpoints:
           \t</app>
           </apps>
   - endpoint:
-      action: GET /apps/:name
+      action: GET /v2/apps/:name
       text: Get info for an app
       params:
         - name: name
@@ -90,7 +90,7 @@ endpoints:
           \t<database_size>0</database_size>
           </app>
   - endpoint:
-      action: POST /apps
+      action: POST /v2/apps
       text: Create an app
       params:
         - name: 'app[name]'
@@ -137,7 +137,7 @@ endpoints:
           \t<database_size>0</database_size>
           </app>
   - endpoint:
-      action: PUT /apps/:name
+      action: PUT /v2/apps/:name
       text: Rename an app
       params:
         - name: name
@@ -155,7 +155,7 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
   - endpoint:
-      action: POST /apps/:app/server/maintenance
+      action: POST /v2/apps/:app/server/maintenance
       text: Toggle maintenance mode for an app
       params:
         - name: app
@@ -170,7 +170,7 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
   - endpoint:
-      action: DELETE /apps/:name
+      action: DELETE /v2/apps/:name
       text: Destroy an app
       params:
         - name: name

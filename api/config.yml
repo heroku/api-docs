@@ -2,7 +2,7 @@
 title: "Config"
 endpoints:
   - endpoint:
-      action: GET /apps/:app/config_vars
+      action: GET /v2/apps/:app/config_vars
       text: List config vars for an app
       params:
         - name: app
@@ -23,7 +23,7 @@ endpoints:
           \t<config_var name="KEY2">value2</config_var>
           </config_vars>
   - endpoint:
-      action: PUT /apps/:app/config_vars
+      action: PUT /v2/apps/:app/config_vars
       text: Add config vars to an app
       params:
         - name: app
@@ -49,7 +49,7 @@ endpoints:
           \t<config_var name="KEY3">value3</config_var>
           </config_vars>
   - endpoint:
-      action: DELETE /apps/:app/config_vars/:key
+      action: DELETE /v2/apps/:app/config_vars/:key
       text: Remove a config var from an app
       params:
         - name: app

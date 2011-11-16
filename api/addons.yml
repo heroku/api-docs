@@ -2,7 +2,7 @@
 title: "Addons"
 endpoints:
   - endpoint:
-      action: GET /addons
+      action: GET /v2/addons
       text: List all available addons
       response:
         json: |
@@ -29,7 +29,7 @@ endpoints:
           \t</addon>
           </addons>
   - endpoint:
-      action: GET /apps/:app/addons
+      action: GET /v2/apps/:app/addons
       text: List addons installed on an app
       params:
         - name: app
@@ -62,7 +62,7 @@ endpoints:
           \t</addon>
           </addons>
   - endpoint:
-      action: POST /apps/:app/addons/:addon
+      action: POST /v2/apps/:app/addons/:addon
       text: Install an addon to an app
       params:
         - name: app
@@ -88,7 +88,7 @@ endpoints:
           \t<price>free</price>
           </addon>
   - endpoint:
-      action: PUT /apps/:app/addons/:addon
+      action: PUT /v2/apps/:app/addons/:addon
       text: Upgrade an addon to an app
       params:
         - name: app
@@ -114,7 +114,7 @@ endpoints:
           \t<price>$5/mo</price>
           </addon>
   - endpoint:
-      action: DELETE /apps/:app/addons/:addon
+      action: DELETE /v2/apps/:app/addons/:addon
       text: Uninstall an addon from an app
       params:
         - name: app

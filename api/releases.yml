@@ -2,7 +2,7 @@
 title: "Releases"
 endpoints:
   - endpoint:
-      action: GET /apps/:app/releases
+      action: GET /v2/apps/:app/releases
       text: List releases for an app
       params:
         - name: app
@@ -45,7 +45,7 @@ endpoints:
           \t</release>
           </releases>
   - endpoint:
-      action: GET /apps/:app/releases/:release
+      action: GET /v2/apps/:app/releases/:release
       text: Get info for a release
       params:
         - name: app
@@ -87,7 +87,7 @@ endpoints:
           \t</pstable>
           </release>
   - endpoint:
-      action: POST /apps/:app/releases
+      action: POST /v2/apps/:app/releases
       text: Rollback to a release
       params:
         - name: app
