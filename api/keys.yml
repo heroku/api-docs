@@ -39,7 +39,7 @@ endpoints:
       text: Remove an SSH key from this account
       params:
         - name: key
-          text: the name of the key
+          text: the username@hostname description field of the key
           required: true
       response:
         json: |
