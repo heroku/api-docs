@@ -155,6 +155,24 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
   - endpoint:
+      action: PUT /apps/:name
+      text: Transfer an app
+      params:
+        - name: name
+          text: the app name
+          required: true
+        - name: 'app[transfer_owner]'
+          text: the new app owner
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"name": "name"
+          }
+        xml: |
+          HTTP/1.1 200 OK
+  - endpoint:
       action: POST /apps/:app/server/maintenance
       text: Toggle maintenance mode for an app
       params:
