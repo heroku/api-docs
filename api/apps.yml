@@ -173,7 +173,7 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
   - endpoint:
-      action: POST /apps/:app/server/maintenance
+      action: POST /apps/:name/server/maintenance
       text: Toggle maintenance mode for an app
       params:
         - name: app
