@@ -56,7 +56,7 @@ endpoints:
           HTTP/1.1 200 OK
   - endpoint:
       action: DELETE /apps/:app/domains/:domain_name
-      text: Remove a collaborator from an app
+      text: Remove a domain from an app
       params:
         - name: app
           text: the app name
