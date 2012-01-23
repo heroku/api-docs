@@ -128,10 +128,10 @@ endpoints:
           text: the app name
           required: true
         - name: ps
-          text: the name of a process to restart
+          text: the name of a process to stop
           required: false
         - name: type
-          text: the type of process to restart
+          text: the type of process to stop
           required: false
       response:
         json: |
