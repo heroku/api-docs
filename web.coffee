@@ -57,11 +57,15 @@ app.helpers
   section_li: (path, name, current_section) ->
     active = if current_section == path then "active" else ""
     html = "<li class=\"" + active + "\"><a href=\"/" + path + "\">" + name + "</a></li>"
-    if current_section is path && doc = docs.fetch(path)
-      for idx, endpoint of doc.endpoints
-        text = endpoint.endpoint.text.split("\n")[0]
-        html += "<li class=\"item\"><a href=\"#" + this.anchor(endpoint.endpoint) + "\">" + text + "</a></li>"
+    html += this.subsection_li(docs.fetch(path)) if current_section == path
     html
+
+  subsection_li: (doc) ->
+    return "" unless doc
+    items = for idx, endpoint of doc.endpoints
+      text = endpoint.endpoint.text.split("\n")[0]
+      "<li class=\"item\"><a href=\"#" + this.anchor(endpoint.endpoint) + "\">" + text + "</a></li>"
+    items.join("\n")
 
   text_as_html: (text) ->
     text = text.replace(/\n/g, "<br>")
