@@ -1,19 +1,22 @@
 {
-  "name": "kikai",
-  "version": "0.0.1",
-  "description": "API docs",
-  "author": "David Dollar",
+  "name":        "api-docs",
+  "version":     "0.0.0",
+  "description": "Heroku API Documentation",
+  "author":      "Heroku",
+
   "dependencies": {
-    "yaml": "0.2.2",
-    "express": "2.4.3",
-    "jade": "0.13",
-    "nodemon": "latest",
-    "sass": "latest",
-    "yamlparser": "latest",
-    "restler": "latest",
-    "connect-form": "latest"
+    "coffee-script": "1.2.x",
+    "connect-form":  "0.2.x",
+    "express":       "2.5.x",
+    "jade":          "0.20.x",
+    "nodemon":       "0.6.x",
+    "restler":       "0.2.x",
+    "sass":          "0.5.x",
+    "yamlparser":    "0.0.2",
+    "yaml":          "0.2.x"
   },
   "engines": {
-    "node": ">= 0.4.0"
+    "node": "0.6.x",
+    "npm":  "1.0.x"
   }
 }

@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# node_modules/.bin/coffee -c web.coffee
+ROOT=$(dirname $(dirname $0))
+PATH="node_modules/.bin:$PATH"
 
 if [ "${NODE_ENV}" == "production" ]; then
-  exec node web.js
+  exec coffee web.coffee
 else
-  exec node_modules/.bin/nodemon --debug web.js
+  exec nodemon -w . web.coffee
 fi
