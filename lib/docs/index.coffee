@@ -22,7 +22,6 @@ class Docs
           @docs[name].endpoints[idx].endpoint = endpoint
 
   fetch: (name) ->
-    util.puts("foo")
     @docs[name]
 
   prettify_xml: (xml) ->
