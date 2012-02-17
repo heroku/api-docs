@@ -4,7 +4,7 @@ ROOT=$(dirname $(dirname $0))
 PATH="node_modules/.bin:$PATH"
 
 if [ "${NODE_ENV}" == "production" ]; then
-  exec coffee web.coffee
+  exec env NODE_PATH="$ROOT/lib" coffee web.coffee
 else
-  exec nodemon -w . web.coffee
+  exec env NODE_PATH="$ROOT/lib" nodemon -w . web.coffee
 fi
