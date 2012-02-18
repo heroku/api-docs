@@ -34,6 +34,9 @@ endpoints:
           \t\t<access>invited</access>
           \t</collaborator>
           </collaborators>
+      ruby: |
+        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku.get_collaborators('%app%')
   - endpoint:
       action: POST /apps/:app/collaborators
       text: Add a collaborator to an app
@@ -51,6 +54,9 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
           invitee@example.org added as a collaborator on example.
+      ruby: |
+        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku.post_collaborator('%app%', '%collaborator[email]%')
   - endpoint:
       action: DELETE /apps/:app/collaborators/:email
       text: Remove a collaborator from an app
@@ -68,3 +74,6 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
           invitee@example.org has been removed as a collaborator on example.
+      ruby: |
+        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku.delete_collaborator('%app%', '%collaborator[email]%')

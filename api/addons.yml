@@ -28,6 +28,9 @@ endpoints:
           \t\t<beta>false</beta>
           \t</addon>
           </addons>
+      ruby: |
+        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku.get_addons
   - endpoint:
       action: GET /apps/:app/addons
       text: List addons installed on an app
@@ -61,6 +64,9 @@ endpoints:
           \t\t<configured>true</configured>
           \t</addon>
           </addons>
+      ruby: |
+        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku.get_addons('%app%')
   - endpoint:
       action: POST /apps/:app/addons/:addon
       text: Install an addon to an app
@@ -87,6 +93,9 @@ endpoints:
           \t<message></message>
           \t<price>free</price>
           </addon>
+      ruby: |
+        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku.post_addon('%app%', '%addon%')
   - endpoint:
       action: PUT /apps/:app/addons/:addon
       text: Upgrade an addon to an app
@@ -113,6 +122,9 @@ endpoints:
           \t<message></message>
           \t<price>$5/mo</price>
           </addon>
+      ruby: |
+        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku.put_addon('%app%', '%addon%')
   - endpoint:
       action: DELETE /apps/:app/addons/:addon
       text: Uninstall an addon from an app
@@ -139,3 +151,6 @@ endpoints:
           \t<message></message>
           \t<price>$5/mo</price>
           </addon>
+      ruby: |
+        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku.delete_addon('%app%', '%addon%')
