@@ -69,7 +69,9 @@ $(window).ready(function() {
 
   $('.example_selector li').bind('click', function(ev) {
     var example = $(ev.target).attr('data-example');
+    var endpoint = $(ev.target).parents('.endpoint');
     switch_to_example(example);
+    $(endpoint).scrollIntoView(700);
   });
 
   switch_to_example($.cookie('example') || 'http');
