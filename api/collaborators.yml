@@ -76,4 +76,4 @@ endpoints:
           invitee@example.org has been removed as a collaborator on example.
       ruby: |
         heroku = Heroku.new(:api_key => '%api_key%')
-        heroku.delete_collaborator('%app%', '%collaborator[email]%')
+        heroku.delete_collaborator('%app%', '%email%')
