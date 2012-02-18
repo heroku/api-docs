@@ -1,3 +1,4 @@
 /.env
 /.monitor
 /node_modules
+/public/*.css

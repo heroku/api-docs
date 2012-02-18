@@ -4,20 +4,25 @@ heroku  = require("heroku")
 sass    = require("sass")
 util    = require("util")
 
-docs = require('docs').load("#{__dirname}/api")
+docs = require("docs").load("#{__dirname}/api")
 
 app = express.createServer(
   express.logger(),
   express.cookieParser(),
   express.session(secret: process.env.SECRET),
-  express.static(__dirname + "/public"),
+  express.static("#{__dirname}/public"),
   require("connect-form")(keepExtensions: true)
-  require("ssl-redirect")
+  require("heroku-nav-header")("https://nav.heroku.com")
 )
 
-app.get "/kikai.css", (req, res) ->
-  res.contentType "text/css"
-  res.send sass.render(fs.readFileSync("views/kikai.sass", "utf8"))
+if process.env.NODE_ENV is "production"
+  app.use require("ssl-redirect")
+
+app.get "/api-docs.css", (req, res) ->
+  fs.readFile "styles/api-docs.sass", "utf8", (err, data) ->
+    throw(err) if err
+    res.contentType "text/css"
+    res.send sass.render(data)
 
 app.get "/", (req, res) ->
   res.render "getting-started.jade",

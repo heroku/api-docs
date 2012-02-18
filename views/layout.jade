@@ -5,21 +5,21 @@ html(lang="en")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js")
     script(src="/jquery.color.js")
     script(src="/jquery.cookie.js")
-    script(src="/kikai.js")
-    link(rel="stylesheet", href="/kikai.css")
+    script(src="/api-docs.js")
+    link(rel="stylesheet", href="/api-docs.css")
   body
-    #container
+    #api_header
+      #api_key
+        span API Key
+        input(type="text")
+      #accept
+        span Accept
+        select
+          option application/json
+          option application/xml
+      h1 Heroku API Documentation
 
-      #header
-        #api_key
-          span API Key
-          input(type="text")
-        #accept
-          span Accept
-          select
-            option application/json
-            option application/xml
-        h1 Heroku API
+    #container
 
       ul.sidebar
         !{ section_li("", "Getting Started", current_section) }
