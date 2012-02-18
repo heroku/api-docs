@@ -1,5 +1,5 @@
 body
-  :background #fff
+  :background #15151b
   :font-family Helvetica, Arial, sans-serif
   :margin 0
 
@@ -9,9 +9,10 @@ body
 
 #api_header
   :background #333
+  :border-bottom #35353b 3px solid
   :color #fff
   :padding 3px 12px
-  :height 30px
+  :height 29px
   h1
     :font-size 18px
     :margin 0
@@ -46,69 +47,73 @@ body
       :border 1px #000 solid
       :padding 2px
 
-ul.sidebar
-  :width 200px
-  :background #ccc
+table#layout
+  :border-collapse collapse
   :margin 0
-  :float left
+  :width 100%
+  td#sidebar
+    :padding 20px 26px
+    :padding-right 20px
+    :vertical-align top
+  td#content
+    :padding 20px 26px
+    :padding-left 0
+    :width 100%
+
+ul.sidebar
+  :width 230px
+  :margin 0
+  :background #ccc
   :display inline-block
   :list-style-type none
   :padding 0
-  :border 1px #999 solid
-  :border-bottom 0
-  :margin-top 12px
+  :border 1px #15151b solid
   li
-    :border-bottom 1px #999 solid
-    &.active
-      :background-color #666
-      a
-        :color #fff
-    &.item
-      :background-color #eee
-      :font-size 0.7em
-      :padding-left 4px
-    &:hover
-      :background-color #666
-      a
-        :color #fff
-    &.item:hover
-      :background-color #fff
-      a
-        :color #333
+    :border-bottom 1px #15151b solid
+    :background-color #1d1e3b
     a
-      :color #333
+      :color #8c89ad
       :padding 8px 12px
       :font-weight bold
       :text-decoration none
       :display inline-block
       :width 168px
+    &.active
+      :background-color #46476e
+      a
+        :color #ccc9ed
+    &.item
+      :background-color #45454b
+      :font-size 0.75em
+      :padding-left 4px
+      a
+        :color #aaa
+        :font-weight normal
+    &:hover
+      :background-color #56577e
+      a
+        :color #dcd9fd
+    &.item:hover
+      :background-color #55555b
+      a
+        :color #bbb
 
 #content
-  :float right
-  :width 786px
-  :padding 12px
-  :padding-right 0px
-  h3
-    :margin 4px
-    :background #666
-    :color #fff
-    :border 1px #333 solid
-    :padding 8px 12px
   .endpoint
     :margin-right 0
     :margin-bottom 30px
-    :padding 8px 12px
-    :background #ddd
-    :border 1px #999 solid
+    :background #333
+    :border 1px #15151b solid
     :padding-bottom 0
+    :width 100%
+    :color #999
     h4
-      :margin -12px
-      :margin-bottom 8px
-      :margin-top -8px
-      :background #aaa
-      :padding 8px 12px
-      :padding-bottom 5px
-      :border-bottom 1px #999 solid
+      :margin 0
+      :background #1d1e3b
+      :padding 12px
+      :padding-bottom 8px
+      :border-bottom 1px #15151b solid
+      :color #8c89ad
       .status
         :float right
         :margin-right 6px
@@ -118,19 +123,15 @@ ul.sidebar
         :margin-top -2px
         :margin-right -4px
     .text
-      :padding 16px
-      :padding-left 12px
+      :padding 12px
       :padding-bottom 10px
-      :border-bottom 1px #999 solid
-      :margin -12px
+      :border-bottom 1px #15151b solid
       :line-height 24px
     .params
-      :margin -12px
-      :margin-top 12px
-      :margin-bottom 0
-      :background #ccc
+      :background #555
       .param
-        :border-bottom 1px #aaa solid
+        :border-bottom 1px #15151b solid
+        :color #000
         .name
           :display inline-block
           :width 130px
@@ -141,6 +142,8 @@ ul.sidebar
           :padding 8px 12px
           input
             :width 150px
+            :background-color #aaa
+            :border 1px #000 solid
         .type
           :display inline-block
           :padding 8px 12px
@@ -158,45 +161,60 @@ ul.sidebar
           :font-size 0.85em
           :border-bottom 0
           :margin-top 0px
-    .web
-      :margin-top 8px
-      h4
-        :font-size 0.8em
-        :padding-top 4px
-        :padding-bottom 4px
-        :padding-left 8px
-      textarea
-        :margin-left -3px
-        :margin-bottom 4px
-        :width 760px
-        :font-family Courier, Courier New, monospace
     .curl
       textarea
         :height 70px
+    .request
+      :border-bottom 1px #15151b solid
+      :padding 12px
+      h4
+        :margin -12px
+        :margin-bottom 12px
     .response
+      :padding 12px
+      h4
+        :margin -12px
+        :margin-bottom 12px
       textarea
         :height 200px
+    textarea
+      :width 100%
+      :font-family Menlo, Courier, Courier New, monospace
+      :-webkit-box-sizing border-box
+      :-moz-box-sizing border-box
+      :box-sizing border-box
+      :display block
+      :background #000
+      :color #999
+      :border 1px #222 solid
+      :padding 8px
 
 
 #getting-started
   h2
-    :background-color #ccc
+    :background #1d1e3b
+    :color #8c89ad
+    :border 1px #15151b solid
     :margin 0
     :padding 8px 12px
-    :border 1px #999 solid
     :font-size 18px
     :border-bottom 0
   .section
-    :background-color #eee
+    :background-color #333
     :padding 0px 8px
-    :border 1px #999 solid
+    :border 1px #15151b solid
     :margin-bottom 12px
+    :color #bbb
+    :font-size 14px
+    a
+      :color #aca9cd
+      :font-weight bold
     h3
-      :background #eee
       :border 0
-      :border-bottom 1px #999 solid
-      :color #666
+      :border-bottom 1px #222 solid
+      :color #777
       :padding 4px
+      :margin-left 4px
       :margin-bottom 4px
       :margin-top 12px
   .response-codes
@@ -209,14 +227,17 @@ ul.sidebar
   p
     :margin 0
     :padding 0
-    :margin 16px 8px
+    :margin 14px 8px
     :line-height 20px
     code
-      :font-size 16px
-      :background-color #fcfcfc
+      :font-size 14px
       :padding 2px 6px
+      :font-family Courier, Courier New, monospace
+      :color #ccc
   p.code
-    :background #333
-    :color #fff
-    :font-family monospace
+    :background #000
+    :font-family Courier, Courier New, monospace
     :padding 8px 16px
+    :border 1px #222 solid
+    :color #666
+    :margin-top -2px

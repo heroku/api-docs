@@ -28,12 +28,12 @@ $(window).ready(function() {
       success: function(data) {
         enable_status(endpoint, 'success');
         $(endpoint).find('.response textarea').text(data);
-        $(endpoint).find('.response textarea').css('background-color', '#cfc');
+        $(endpoint).find('.response textarea').css('color', '#9c9');
       },
       error: function(xhr, data) {
         enable_status(endpoint, 'error');
         $(endpoint).find('.response textarea').text(xhr.responseText);
-        $(endpoint).find('.response textarea').css('background-color', '#fcc');
+        $(endpoint).find('.response textarea').css('color', '#fcc');
       }
     });
   });
@@ -134,8 +134,6 @@ function calculate_request(endpoint) {
 function calculate_response(endpoint, ignore_blank) {
   var blank = true;
 
-  $(endpoint).find('.response textarea').css('background-color', '#fff');
-
   $(endpoint).find('input.param').each(function(idx, param) {
     if ($(param).val() != '') {
       blank = false;
@@ -151,10 +149,8 @@ function calculate_response(endpoint, ignore_blank) {
     var short = short_accept($('#accept select').val());
     var data = $(endpoint).find('input.sample.' + short).val();
     $(endpoint).find('.response textarea').text(data);
-    $(endpoint).find('.response textarea').css('background-image', 'url(/sample.png)');
   } else {
     $(endpoint).find('.response textarea').text('');
-    $(endpoint).find('.response textarea').css('background-image', '');
   }
 }
 
