@@ -142,6 +142,9 @@ endpoints:
           \t<git_url>git@heroku.com:example.git</git_url>
           \t<database_size>0</database_size>
           </app>
+      ruby: |
+        heroku = Heroku.new(:api_key => %api_key%)
+        heroku.post_app(:name => '%app[name]%', :stack => '%app[stack]%')
   - endpoint:
       action: PUT /apps/:name
       text: Rename an app
@@ -160,6 +163,9 @@ endpoints:
           }
         xml: |
           HTTP/1.1 200 OK
+      ruby: |
+        heroku = Heroku.new(:api_key => %api_key%)
+        heroku.put_app('%name%', :name => '%app[name]%')
   - endpoint:
       action: PUT /apps/:name
       text: Transfer an app
@@ -178,6 +184,9 @@ endpoints:
           }
         xml: |
           HTTP/1.1 200 OK
+      ruby: |
+        heroku = Heroku.new(:api_key => %api_key%)
+        heroku.put_app('%name%', :transfer_owner => '%app[transfer_owner]%')
   - endpoint:
       action: POST /apps/:name/server/maintenance
       text: Toggle maintenance mode for an app
@@ -193,6 +202,9 @@ endpoints:
           HTTP/1.1 200 OK
         xml: |
           HTTP/1.1 200 OK
+      ruby: |
+        heroku = Heroku.new(:api_key => %api_key%)
+        heroku.post_app_server_maintenance('%name%', '%maintenance_mode%')
   - endpoint:
       action: DELETE /apps/:name
       text: Destroy an app
@@ -206,3 +218,6 @@ endpoints:
           {}
         xml: |
           HTTP/1.1 200 OK
+      ruby: |
+        heroku = Heroku.new(:api_key => %api_key%)
+        heroku.delete_app('%name%')

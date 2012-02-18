@@ -144,6 +144,7 @@ function calculate_request(endpoint) {
   $.each(params, function(key, val) {
     ruby = ruby.replace('%' + key + '%', val);
   });
+  ruby = ruby.replace(/%.*?%/g, '');
   $(endpoint).find('.example.ruby textarea').text(ruby);
 }
 
