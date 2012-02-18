@@ -66,6 +66,13 @@ $(window).ready(function() {
     calculate_request(this);
     calculate_response(this);
   });
+
+  $('.example_selector li').bind('click', function(ev) {
+    var example = $(ev.target).attr('data-example');
+    switch_to_example(example);
+  });
+
+  switch_to_example($.cookie('example') || 'http');
 });
 
 function flatten_params(params) {
@@ -115,12 +122,14 @@ function action_and_params_for_endpoint(endpoint) {
 function calculate_request(endpoint) {
   var action_and_params = action_and_params_for_endpoint(endpoint);
   request = action_and_params.action + '\n' + flatten_params(action_and_params.params);
-  $(endpoint).find('.request.http textarea').text(request);
+  $(endpoint).find('.example.http .request textarea').text(request);
 
   var accept = $('#accept select').val();
   var apikey = $('#api_key input').val();
   var method = action_and_params.action.split(' ')[0];
-  var path = action_and_params.action.split(' ')[1];
+  var path   = action_and_params.action.split(' ')[1];
+  var params = params_for_endpoint(endpoint);
+
   var curl = '';
   curl += 'curl -H "Accept: ' + accept + '" \\\n';
   curl += '  -u :' + apikey + ' \\\n';
@@ -128,7 +137,14 @@ function calculate_request(endpoint) {
     curl += '  -d "' + key + '=' + full_uri_encode(val) + '" \\\n';
   });
   curl += '  -X ' + method + ' https://api.heroku.com' + path;
-  $(endpoint).find('.request.curl textarea').text(curl);
+  $(endpoint).find('.example.curl textarea').text(curl);
+
+  var ruby = $(endpoint).find('.sample.ruby').val();
+  ruby = ruby.replace('%api_key%', apikey);
+  $.each(params, function(key, val) {
+    ruby = ruby.replace('%' + key + '%', val);
+  });
+  $(endpoint).find('.example.ruby textarea').text(ruby);
 }
 
 function calculate_response(endpoint, ignore_blank) {
@@ -148,9 +164,9 @@ function calculate_response(endpoint, ignore_blank) {
   if (blank) {
     var short = short_accept($('#accept select').val());
     var data = $(endpoint).find('input.sample.' + short).val();
-    $(endpoint).find('.response textarea').text(data);
+    $(endpoint).find('.example.http .response textarea').text(data);
   } else {
-    $(endpoint).find('.response textarea').text('');
+    $(endpoint).find('.example.http .response textarea').text('');
   }
 }
 
@@ -188,4 +204,15 @@ function full_uri_encode(string) {
   string = encodeURIComponent(string);
   string = string.replace(/\./g, '%2E');
   return(string);
+}
+
+var current_example = 'http';
+
+function switch_to_example(example) {
+  $('.example_selector .' + current_example).removeClass('active');
+  $('.example.' + current_example).css('display', 'none');
+  $('.example_selector .' + example).addClass('active');
+  $('.example.' + example).css('display', 'block');
+  current_example = example;
+  $.cookie('example', example, { expires: 3650 });
 }

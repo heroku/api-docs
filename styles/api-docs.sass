@@ -111,7 +111,6 @@ ul.sidebar
       :margin 0
       :background #1d1e3b
       :padding 12px
-      :padding-bottom 8px
       :border-bottom 1px #15151b solid
       :color #8c89ad
       .status
@@ -120,8 +119,8 @@ ul.sidebar
         :display none
       .execute
         :float right
-        :margin-top -2px
-        :margin-right -4px
+        :margin-top 1px
+        :margin-right -2px
     .text
       :padding 12px
       :padding-bottom 10px
@@ -162,20 +161,38 @@ ul.sidebar
           :font-size 0.85em
           :border-bottom 0
           :margin-top 0px
+    .example_selector
+      :margin 0
+      :margin-top -2px
+      :margin-right -10px
+      :padding 0
+      :float right
+      :padding-bottom 0
+      :list-style-type none
+      li
+        :margin 0
+        :padding 0
+        :display inline-block
+        :cursor pointer
+        :padding 3px 8px
+        :margin-right 8px
+        :font-size 11px
+        :background #45454b
+        :color #aaa
+        :border 1px #15151b solid
+      li.active
+        :background #434769
+        :color #ccc
+    .examples
+      :padding-top 0
+      :background #333
+    .example
+      :background #222
+      :display none
     .curl
       textarea
         :height 70px
-    .request
-      :border-bottom 1px #15151b solid
-      :padding 12px
-      h4
-        :margin -12px
-        :margin-bottom 12px
     .response
-      :padding 12px
-      h4
-        :margin -12px
-        :margin-bottom 12px
       textarea
         :height 200px
     textarea
@@ -189,6 +206,7 @@ ul.sidebar
       :color #AAA
       :border 1px #222 solid
       :padding 8px
+      :margin 0
 
 
 #getting-started

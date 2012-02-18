@@ -4,13 +4,10 @@
   a(name=anchor(endpoint))
   div.endpoint
     h4
-      input.execute(type="button", value="Execute")
-      .status.spinner
-        img(src="/spinner.gif")
-      .status.success
-        img(src="/success.png")
-      .status.error
-        img(src="/error.png")
+      ul.example_selector
+        li.http(data-example="http") HTTP
+        li.curl(data-example="curl") curl
+        li.ruby(data-example="ruby") Ruby
       span.action
         = endpoint.action
     div.text!= text_as_html(endpoint.text)
@@ -28,14 +25,26 @@
         - })
     input.sample.json(type="hidden", value=endpoint.response.json)
     input.sample.xml(type="hidden", value=endpoint.response.xml)
-    div.web.request.http
-      h4 Request (HTTP)
-      textarea(readonly)
-    div.web.request.curl
-      h4 Request (curl)
-      textarea(readonly)
-    div.web.response
-      h4 Response
-      textarea(readonly)
-
+    input.sample.ruby(type="hidden", value=endpoint.ruby)
+    div.examples
+      div.example.http
+        div.request
+          h4 HTTP Request
+            input.execute(type="button", value="Execute")
+            .status.spinner
+              img(src="/spinner.gif")
+            .status.success
+              img(src="/success.png")
+            .status.error
+              img(src="/error.png")
+          textarea(readonly)
+        div.response
+          h4 HTTP Response
+          textarea(readonly)
+      div.example.curl
+        h4 Example
+        textarea(readonly)
+      div.example.ruby
+        h4 Example
+        textarea(readonly)
 - })

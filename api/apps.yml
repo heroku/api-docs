@@ -45,6 +45,9 @@ endpoints:
           \t\t<database_size>0</database_size>
           \t</app>
           </apps>
+      ruby: |
+        heroku = Heroku.new(:api_key => %api_key%)
+        heroku.get_apps
   - endpoint:
       action: GET /apps/:name
       text: Get info for an app
@@ -89,6 +92,9 @@ endpoints:
           \t<git_url>git@heroku.com:example.git</git_url>
           \t<database_size>0</database_size>
           </app>
+      ruby: |
+        heroku = Heroku.new(:api_key => %api_key%)
+        heroku.get_app('%name%')
   - endpoint:
       action: POST /apps
       text: Create an app
