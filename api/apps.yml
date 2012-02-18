@@ -46,7 +46,7 @@ endpoints:
           \t</app>
           </apps>
       ruby: |
-        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku = Heroku::API.new(:api_key => '%api_key%')
         heroku.get_apps
   - endpoint:
       action: GET /apps/:name
@@ -93,7 +93,7 @@ endpoints:
           \t<database_size>0</database_size>
           </app>
       ruby: |
-        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku = Heroku::API.new(:api_key => '%api_key%')
         heroku.get_app('%name%')
   - endpoint:
       action: POST /apps
@@ -143,7 +143,7 @@ endpoints:
           \t<database_size>0</database_size>
           </app>
       ruby: |
-        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku = Heroku::API.new(:api_key => '%api_key%')
         heroku.post_app(:name => '%app[name]%', :stack => '%app[stack]%')
   - endpoint:
       action: PUT /apps/:name
@@ -164,7 +164,7 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
       ruby: |
-        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku = Heroku::API.new(:api_key => '%api_key%')
         heroku.put_app('%name%', :name => '%app[name]%')
   - endpoint:
       action: PUT /apps/:name
@@ -185,7 +185,7 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
       ruby: |
-        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku = Heroku::API.new(:api_key => '%api_key%')
         heroku.put_app('%name%', :transfer_owner => '%app[transfer_owner]%')
   - endpoint:
       action: POST /apps/:name/server/maintenance
@@ -203,7 +203,7 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
       ruby: |
-        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku = Heroku::API.new(:api_key => '%api_key%')
         heroku.post_app_server_maintenance('%name%', '%maintenance_mode%')
   - endpoint:
       action: DELETE /apps/:name
@@ -219,5 +219,5 @@ endpoints:
         xml: |
           HTTP/1.1 200 OK
       ruby: |
-        heroku = Heroku.new(:api_key => '%api_key%')
+        heroku = Heroku::API.new(:api_key => '%api_key%')
         heroku.delete_app('%name%')
