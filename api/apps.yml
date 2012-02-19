@@ -191,7 +191,7 @@ endpoints:
       action: POST /apps/:name/server/maintenance
       text: Toggle maintenance mode for an app
       params:
-        - name: app
+        - name: name
           text: app name
           required: true
         - name: maintenance_mode
