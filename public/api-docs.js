@@ -237,8 +237,7 @@ function relocate_sidebar() {
   var sidebar = $('ul.sidebar');
   var scroll_top = $(document).scrollTop();
   var sidebar_margin_top = (scroll_top < sidebar_top) ? 0 : scroll_top - sidebar_top + 22;
-  console.log('nst:' + sidebar_margin_top + ' left:' + $(sidebar).offset().left);
-  $(sidebar).stop().animate({ marginTop:sidebar_margin_top }, { queue:false, duration:200 }, function() {
+  $(sidebar).clearQueue().stop().delay(500).animate({ marginTop:sidebar_margin_top }, { duration:200 }, function() {
     console.log('animated');
   });
 }
