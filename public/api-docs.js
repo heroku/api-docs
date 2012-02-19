@@ -80,6 +80,12 @@ $(window).ready(function() {
   });
 
   switch_to_example($.cookie('example') || 'http');
+
+  $(window).scroll(function() {
+    relocate_sidebar();
+  });
+
+  sidebar_top = $('ul.sidebar').offset().top;
 });
 
 function flatten_params(params) {
@@ -223,4 +229,16 @@ function switch_to_example(example) {
   $('.example.' + example).css('display', 'block');
   current_example = example;
   $.cookie('example', example, { expires: 3650 });
+}
+
+var sidebar_top = null;
+
+function relocate_sidebar() {
+  var sidebar = $('ul.sidebar');
+  var scroll_top = $(document).scrollTop();
+  var sidebar_margin_top = (scroll_top < sidebar_top) ? 0 : scroll_top - sidebar_top + 22;
+  console.log('nst:' + sidebar_margin_top + ' left:' + $(sidebar).offset().left);
+  $(sidebar).stop().animate({ marginTop:sidebar_margin_top }, { queue:false, duration:200 }, function() {
+    console.log('animated');
+  });
 }
