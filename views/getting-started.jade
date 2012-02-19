@@ -10,7 +10,7 @@
       | Once you have an API key, use HTTP Basic Authentication with a blank username and
       | the API key as a password. Here's an example using <code>curl</code> (the colon separates username and password):
     p.code
-      | curl -H "Accept: application/json" -u :apikeyhere https://api.heroku.com/apps
+      | curl -H "Accept: application/json" -u :apikey https://api.heroku.com/apps
 
   h2 Headers
 
@@ -21,7 +21,7 @@
     p
       | To list all of your apps in XML, use this <code>curl</code> command:
     p.code
-      | curl -H "Accept: application/xml" -u :apikeyhere https://api.heroku.com/apps
+      | curl -H "Accept: application/xml" -u :apikey https://api.heroku.com/apps
 
   h2 Response Codes
 
