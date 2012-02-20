@@ -115,14 +115,12 @@ switch_to_example = (example) ->
     expires: 3650
   current_example = example
   diff = bottom("ul.sidebar") - bottom(".endpoint:last")
-  console.log "diff:#{diff}"
   $("ul.sidebar").css("marginTop", 0) if diff > 0
 
 relocate_sidebar = (delay=500, duration=200) ->
   sidebar = $("ul.sidebar")
   scroll_top = $(document).scrollTop()
   sidebar_margin_top = (if (scroll_top < sidebar_top) then 0 else scroll_top - sidebar_top + 22)
-  console.log "smt:#{sidebar_margin_top}"
   $(sidebar).clearQueue().stop().delay(delay).animate { marginTop: sidebar_margin_top }, { duration: duration }, ->
     true
 
