@@ -1,3 +1,4 @@
+coffee  = require("coffee-script")
 express = require("express")
 fs      = require("fs")
 heroku  = require("heroku")
@@ -23,6 +24,12 @@ app.get "/api-docs.css", (req, res) ->
     throw(err) if err
     res.contentType "text/css"
     res.send sass.render(data)
+
+app.get "/api-docs.js", (req, res) ->
+  fs.readFile "scripts/api-docs.coffee", "utf8", (err, data) ->
+    throw(err) if err
+    res.contentType "text/css"
+    res.send coffee.compile(data)
 
 app.get "/", (req, res) ->
   res.render "getting-started.jade",
