@@ -1,0 +1,24 @@
+---
+title: "User"
+endpoints:
+  - endpoint:
+      action: GET /user
+      text: Get info for the current user
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"created_at":"2011/01/01 00:00:00 -0000",
+          \t"last_login":"2012/01/01 00:00:00 -0000",
+          \t"id":"000000@users.heroku.com",
+          \t"email":"owner@example.org"
+          }
+        xml: |
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <user>
+          \t<created-at>Sat Jan 1 00:00:00 UTC 2011</created-at>
+          \t<last-login>Sun Jan 1 00:00:00 UTC 2012</last-login>
+          \t<id>000000@users.heroku.com</id>
+          \t<email>owner@example.org</email>
+          </user>
