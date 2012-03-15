@@ -149,7 +149,7 @@ endpoints:
           text: the app name
           required: true
         - name: type
-          text: the type of process to scale (dyno/worker for aspen/bamboo)
+          text: the type of process to scale
           required: true
         - name: qty
           text: the desired number of processes of this type
