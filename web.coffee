@@ -20,8 +20,7 @@ app.get "/kikai.css", (req, res) ->
   res.send sass.render(fs.readFileSync("views/kikai.sass", "utf8"))
 
 app.get "/", (req, res) ->
-  res.render "getting-started.jade",
-    current_section: ""
+  res.render "getting-started.jade", current_section: ""
 
 app.get "/:section", (req, res, next) ->
   throw "no such section" unless doc = docs.fetch(req.params.section)
