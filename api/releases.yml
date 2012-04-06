@@ -45,13 +45,52 @@ endpoints:
           \t</release>
           </releases>
   - endpoint:
+      action: GET /apps/:app/releases/current
+      text: Get info for the current release
+      params:
+        - name: app
+          text: the app name
+          required: true
+      response:
+        json: |
+          HTTP/1.1 200 OK
+          {
+          \t"name": "v1",
+          \t"descr": "Add-on add example:addon",
+          \t"user": "releasing-user@example.org",
+          \t"commit": "0f0f0f0",
+          \t"env": { "FOO": "bar" },
+          \t"addons": [ "example:addon" ],
+          \t"pstable": { "web": "bin/web start" },
+          \t"created_at": "2011/01/01 00:00:00 -0700"
+          }
+        xml: |
+          HTTP/1.1 200 OK
+          <?xml version="1.0" encoding="UTF-8"?>
+          <release>
+          \t<name>v1</name>
+          \t<description>Add-on add example:addon</description>
+          \t<created_at>2011-01-01T00:00:00-07:00</created_at>
+          \t<commit>0f0f0f0</commit>
+          \t<user>releasing-user@example.org</user>
+          \t<env>
+          \t\t<FOO>bar</FOO>
+          \t</env>
+          \t<addons>
+          \t\t<addon>example:addon</addon>
+          \t</addons>
+          \t<pstable>
+          \t\t<ps name="web">bin/web start</web>
+          \t</pstable>
+          </release>
+  - endpoint:
       action: GET /apps/:app/releases/:release
       text: Get info for a release
       params:
         - name: app
           text: the app name
           required: true
-        - name: release 
+        - name: release
           text: the release name
           required: true
       response:
@@ -93,7 +132,7 @@ endpoints:
         - name: app
           text: the app name
           required: true
-        - name: rollback 
+        - name: rollback
           text: the release to which to roll back
           required: true
       response:
