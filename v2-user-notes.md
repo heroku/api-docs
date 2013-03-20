@@ -24,7 +24,7 @@ Pasted from [heroku/core#1869](https://github.com/heroku/core/issues/1869#issuec
 - List and delete are unaffected from the client perspective
 
 
-### Rttachable Resources
+### Attachable Resources
 
 Attachable resources docs at <https://github.com/heroku/api/blob/master/docs/api/attachable-resources.md>.
 
