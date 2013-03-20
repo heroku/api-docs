@@ -8,7 +8,7 @@ here. The main source of info for the [v2 API][v2] is [https://api-docs.heroku.c
 But there are a few undocumented corners of v2; that's where this file comes in.
 
 If you see anything here that's wrong, or misleading, or missing, go ahead and
-fix it!
+fix it! The edit button is right up there at the top.
 
 Without further ado…
 
