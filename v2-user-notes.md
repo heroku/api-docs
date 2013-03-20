@@ -18,8 +18,8 @@ Move a custom domain to an app in another kernel with no downtime.
 
 Pasted from [heroku/core#1869](https://github.com/heroku/core/issues/1869#issuecomment-15153192):
 
-- POST /apps/churrasco/domains/myapp.com (don't love domain in the path, but that's a v2 convention of sorts)
-- The only param taken by that endpoint so far is app, a pointer to the app to move the domain to (could be the app name or hid, similar to how GET /apps/:id works)
+- `POST /apps/churrasco/domains/myapp.com` (don't love domain in the path, but that's a v2 convention of sorts)
+- The only param taken by that endpoint so far is `app`, a pointer to the app to move the domain to (could be the app name or hid, similar to how `GET /apps/:id` works)
 - Response is the regular serialization of the domain
 - List and delete are unaffected from the client perspective
 
