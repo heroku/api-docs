@@ -12,7 +12,7 @@ fix it! The edit button is right up there at the top.
 
 Without further ado…
 
-### custom domains
+### Custom Domains
 
 Move a custom domain to an app in another kernel with no downtime.
 
@@ -24,7 +24,7 @@ Pasted from [heroku/core#1869](https://github.com/heroku/core/issues/1869#issuec
 - List and delete are unaffected from the client perspective
 
 
-### attachable resources
+### Rttachable Resources
 
 Attachable resources docs at <https://github.com/heroku/api/blob/master/docs/api/attachable-resources.md>.
 
