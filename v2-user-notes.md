@@ -24,5 +24,5 @@ Pasted from [heroku/core#1869](https://github.com/heroku/core/issues/1869#issuec
 - List and delete are unaffected from the client perspective
 
 
-v3: https://github.com/heroku/api-doc
-v2: https://api-docs.heroku.com/
+[v3]: https://github.com/heroku/api-doc
+[v2]: https://api-docs.heroku.com/
