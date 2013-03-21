@@ -31,3 +31,21 @@ Attachable resources docs at <https://github.com/heroku/api/blob/master/docs/api
 
 [v3]: https://github.com/heroku/api-doc
 [v2]: https://api-docs.heroku.com/
+
+### Labs Features
+
+Getting the features for an app
+
+Request:
+
+    GET /features[/feature][?app=]
+
+Response Model (could be scalar or array depending on request):
+
+    Feature(kind: String, name: String, enabled: Boolean, docs: String, summary: String)
+
+### Other Undocumented APIs
+
+Below are links to code in apps using undocumented APIs:
+ - https://github.com/heroku/tesuto/blob/master/app/com/heroku/api/HerokuApiSupplements.scala
+ - https://github.com/heroku/cisaurus/blob/master/app/com/heroku/api/Requests.scala
