@@ -52,6 +52,8 @@ These features to control process releases use undocumented params to process re
 - `POST /apps/:app/ps/scale` takes a `:release` param
 - `POST /apps/:app/ps` takes a `:release` param
 
+These requests restart, scale, and run processes on the specified release.
+
 ### Other Undocumented APIs
 
 Below are links to code in apps using undocumented APIs:
