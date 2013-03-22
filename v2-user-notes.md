@@ -44,6 +44,14 @@ Response Model (could be scalar or array depending on request):
 
     Feature(kind: String, name: String, enabled: Boolean, docs: String, summary: String)
 
+### Sticky Releases and Manual Deploys
+
+These features to control process releases use undocumented params to process requests:
+
+- `POST /apps/:app/ps/restart` takes a `:release` param
+- `POST /apps/:app/ps/scale` takes a `:release` param
+- `POST /apps/:app/ps` takes a `:release` param
+
 ### Other Undocumented APIs
 
 Below are links to code in apps using undocumented APIs:
