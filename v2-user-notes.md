@@ -29,7 +29,7 @@ Pasted from [heroku/core#1869](https://github.com/heroku/core/issues/1869#issuec
 Attachable resources docs at <https://github.com/heroku/api/blob/master/docs/api/attachable-resources.md>.
 
 
-[v3]: https://github.com/heroku/api-doc
+[v3]: https://devcenter.heroku.com/articles/platform-api-reference?preview=1
 [v2]: https://api-docs.heroku.com/
 
 ### Labs Features
