@@ -11,7 +11,6 @@ app = express.createServer(
   express.cookieParser(),
   express.session(secret: process.env.SECRET),
   express.static(__dirname + "/public"),
-  require("connect-form")(keepExtensions: true)
   require("ssl-redirect")
 )
 
